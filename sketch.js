@@ -29,7 +29,7 @@ var prevTouched = touched;
 function preload() {
   pipeBodySprite = loadImage('graphics/pipe_body.png');
   pipePeakSprite = loadImage('graphics/pipe_body.png');
-  birdSprite = loadImage('graphics/flappy_bird_og.png');
+  birdSprite = loadImage('graphics/og_bird.png');
   bgImg = loadImage('graphics/background.png');
 }
 
