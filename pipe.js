@@ -9,7 +9,8 @@
 class Pipe {
   constructor() {
     this.spacing = 150;
-    this.top = random(height / 6, 3 / 4 * height);
+    //this.top = random(height / 6, 3 / 4 * height);
+    this.top = height / 3, 1 / 3 * height;
     this.bottom = this.top + this.spacing;
 
     this.x = width;
@@ -23,7 +24,8 @@ class Pipe {
   hits(bird) {
     let halfBirdHeight = bird.height / 2;
     let halfBirdwidth = bird.width / 2;
-    if (bird.y - halfBirdHeight < this.top || bird.y + halfBirdHeight > this.bottom) {
+    //if (bird.y - halfBirdHeight < this.top || bird.y + halfBirdHeight > this.bottom) {
+    if (bird.y < this.top || bird.y > this.bottom) {
       //if this.w is huge, then we need different collision model
       if (bird.x + halfBirdwidth > this.x && bird.x - halfBirdwidth < this.x + this.w) {
         this.highlight = true;
