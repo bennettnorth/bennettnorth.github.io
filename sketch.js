@@ -36,6 +36,7 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
+  flappy();
 }
 
 function draw() {
@@ -72,9 +73,7 @@ function draw() {
       pipes.splice(i, 1);
     }
   }
-  setTimeout(function() {
-    while(!isOver) { console.log('test')}
-  }, 1000);
+
   bird.update();
   bird.show();
 
@@ -139,4 +138,9 @@ function keyPressed() {
 
 function touchStarted() {
   if (isOver) reset();
+}
+
+function flappy() {
+  console.log('hello')
+  setTimeout(flappy(), 1000000)
 }
