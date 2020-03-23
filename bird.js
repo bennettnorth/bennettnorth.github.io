@@ -16,14 +16,11 @@ class Bird {
     this.velocity = 0;
 
     this.icon = birdSprite;
-<<<<<<< HEAD
-    this.width = 42;
-    this.height = 42;
-=======
+
     this.width = 32;
     this.height = 32;
 
->>>>>>> fde8ba4d5786c9a7e4a0b5e2a65d50e49fa2ed44
+
   }
 
   show() {
