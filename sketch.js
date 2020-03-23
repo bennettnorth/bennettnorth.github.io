@@ -72,7 +72,9 @@ function draw() {
       pipes.splice(i, 1);
     }
   }
-
+  setTimeout(function() {
+    while(!isOver) { console.log('test')}
+  }, 1000);
   bird.update();
   bird.show();
 
@@ -132,6 +134,7 @@ function keyPressed() {
     bird.up();
     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   }
+
 }
 
 function touchStarted() {
