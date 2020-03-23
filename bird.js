@@ -11,8 +11,8 @@ class Bird {
     this.y = height / 2;
     this.x = 64;
 
-    this.gravity = 0.6;
-    this.lift = -10;
+    this.gravity = 0.1;
+    this.lift = -5;
     this.velocity = 0;
 
     this.icon = birdSprite;
