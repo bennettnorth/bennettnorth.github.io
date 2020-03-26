@@ -33,16 +33,12 @@ function preload() {
   bgImg = loadImage('graphics/background.png');
 }
 
-async function setup() {
+function setup() {
   createCanvas(800, 600);
   reset();
-  while(!isOver) {
-    console.log('test test')
-    setTimeout(await flappy(), 100000);
-  }
 }
 
-function draw() {
+async function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
@@ -100,7 +96,10 @@ function draw() {
 
   // updates prevTouched
   prevTouched = touched;
-
+  while(!isOver) {
+    console.log('test test')
+    setTimeout(await flappy(), 100000);
+  }
 
 }
 
@@ -144,14 +143,14 @@ function touchStarted() {
 }
 
 async function flappy() {
-  //console.log('hello');
+  console.log('hello');
   // while (!isOver) {
   //   bird.up();
   //   setTimeout(await flappy(), 10000);
   // }
   // reset();
-  bird.up();
-  bird.update();
-  bird.show();
-  setTimeout(await flappy(), 10000);
+  //bird.up();
+  // bird.update();
+  // bird.show();
+  //await setTimeout(await flappy(), 10000);
 }
