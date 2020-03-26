@@ -33,10 +33,10 @@ function preload() {
   bgImg = loadImage('graphics/background.png');
 }
 
-function setup() {
+async function setup() {
   createCanvas(800, 600);
   reset();
-  setTimeout(flappy(), 100000);
+  setTimeout(await flappy(), 100000);
 }
 
 function draw() {
@@ -140,7 +140,9 @@ function touchStarted() {
   if (isOver) reset();
 }
 
-function flappy() {
-  console.log('hello');
-  setTimeout(flappy(), 100000);
+async function flappy() {
+  //console.log('hello');
+  bird.up();
+  if (isOver) reset();
+  setTimeout(await flappy(), 1000);
 }
