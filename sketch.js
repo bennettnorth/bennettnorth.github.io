@@ -25,6 +25,11 @@ var isOver = false;
 var touched = false;
 var prevTouched = touched;
 
+var count = 0;
+
+// var currTime = new Date();
+// var startTime = 0;
+// var endTime = 0;
 
 function preload() {
   pipeBodySprite = loadImage('graphics/pipe_body.png');
@@ -36,6 +41,8 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
+  bird.up();
+  // startTime = currTime.getSecounds();
 }
 
 function draw() {
@@ -56,6 +63,8 @@ function draw() {
     }
   }
 
+  count++;
+
   for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].update();
     pipes[i].show();
@@ -72,12 +81,17 @@ function draw() {
       pipes.splice(i, 1);
     }
   }
-  if (!isOver) {
-    setTimeout(function flappy() {
-      console.log('hello');
-      bird.up();
-    }, 10000)
+  // if (!isOver) {
+  //   setTimeout(function flappy() {
+  //     console.log('hello');
+  //     //bird.up()
+  //   }, 100000)
+  // }
+
+  if (count % 90 == 0 || count == 0) {
+    bird.up();
   }
+
   bird.update();
   bird.show();
 
@@ -122,6 +136,9 @@ function gameover() {
   textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   isOver = true;
+  console.log("count is " + count);
+  console.log("Frame count is " + frameCount);
+
   noLoop();
 }
 
@@ -133,6 +150,7 @@ function reset() {
   bird = new Bird();
   pipes.push(new Pipe());
   gameoverFrame = frameCount - 1;
+  count = 0;
   loop();
 }
 
