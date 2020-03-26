@@ -41,7 +41,6 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
-  bird.up();
   // startTime = currTime.getSecounds();
 }
 
@@ -88,7 +87,7 @@ function draw() {
   //   }, 100000)
   // }
 
-  if (count % 90 == 0 || count == 0) {
+  if (count % 110 == 0 || count/30 == 0.5) {
     bird.up();
   }
 
