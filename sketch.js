@@ -87,9 +87,9 @@ function draw() {
   //   }, 100000)
   // }
 
-  if (count % 110 == 0 || count/30 == 0.5) {
-    bird.up();
-  }
+  // if (count % 110 == 0 || count/30 == 0.5) {
+  //   bird.up();
+  // }
 
   bird.update();
   bird.show();
@@ -135,8 +135,6 @@ function gameover() {
   textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   isOver = true;
-  console.log("count is " + count);
-  console.log("Frame count is " + frameCount);
 
   noLoop();
 }
