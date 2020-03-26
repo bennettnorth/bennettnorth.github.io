@@ -20,7 +20,6 @@ class Bird {
     this.width = 32;
     this.height = 32;
 
-
   }
 
   show() {
@@ -33,6 +32,9 @@ class Bird {
   }
 
   update() {
+    if (this.y >= 340) {
+      this.up();
+    }
     this.velocity += this.gravity;
     this.y += this.velocity;
 
