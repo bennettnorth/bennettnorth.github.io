@@ -37,6 +37,7 @@ async function setup() {
   createCanvas(800, 600);
   reset();
   while(!isOver) {
+    console.log('test test')
     setTimeout(await flappy(), 100000);
   }
 }
@@ -143,7 +144,7 @@ function touchStarted() {
 }
 
 async function flappy() {
-  console.log('hello');
+  //console.log('hello');
   // while (!isOver) {
   //   bird.up();
   //   setTimeout(await flappy(), 10000);
@@ -152,5 +153,5 @@ async function flappy() {
   bird.up();
   bird.update();
   bird.show();
-  //setTimeout(await flappy(), 10000);
+  setTimeout(await flappy(), 10000);
 }
