@@ -38,7 +38,7 @@ function setup() {
   reset();
 }
 
-async function draw() {
+function draw() {
   background(0);
   // Draw our background image, then move it at the same speed as the pipes
   image(bgImg, bgX, 0, bgImg.width, height);
@@ -72,7 +72,12 @@ async function draw() {
       pipes.splice(i, 1);
     }
   }
-
+  if (!isOver) {
+    setTimeout(function flappy() {
+      console.log('hello');
+      bird.up();
+    }, 10000)
+  }
   bird.update();
   bird.show();
 
@@ -96,10 +101,11 @@ async function draw() {
 
   // updates prevTouched
   prevTouched = touched;
-  while(!isOver) {
-    console.log('test test')
-    setTimeout(await flappy(), 100000);
-  }
+
+  // while(!isOver) {
+  //   console.log('test test')
+  //   setTimeout(await flappy(), 100000);
+  // }
 
 }
 
@@ -142,15 +148,15 @@ function touchStarted() {
   if (isOver) reset();
 }
 
-async function flappy() {
-  console.log('hello');
-  // while (!isOver) {
-  //   bird.up();
-  //   setTimeout(await flappy(), 10000);
-  // }
-  // reset();
-  //bird.up();
-  // bird.update();
-  // bird.show();
-  //await setTimeout(await flappy(), 10000);
-}
+// async function flappy() {
+//   console.log('hello');
+//   // while (!isOver) {
+//   //   bird.up();
+//   //   setTimeout(await flappy(), 10000);
+//   // }
+//   // reset();
+//   //bird.up();
+//   // bird.update();
+//   // bird.show();
+//   setTimeout(await flappy(), 10000);
+// }
