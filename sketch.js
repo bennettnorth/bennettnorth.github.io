@@ -36,7 +36,7 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
-  flappy();
+  setTimeout(flappy(), 100000);
 }
 
 function draw() {
@@ -141,6 +141,6 @@ function touchStarted() {
 }
 
 function flappy() {
-  console.log('hello')
-  setTimeout(flappy(), 1000000)
+  console.log('hello');
+  setTimeout(flappy(), 100000);
 }
