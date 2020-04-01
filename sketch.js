@@ -89,17 +89,15 @@ function draw() {
   }
 
   if (count==5) {
-    noLoop();
-    bird.wrongAnswer();
-    bird.update();
-    loop();
+    //noLoop()
     // call a function returns true or false
     // if (true) {
     //   loop()
     // } else {
     //   false
     // }
-
+    bird.wrongAnswer();
+    bird.update();
   }
   //print(count)
 
