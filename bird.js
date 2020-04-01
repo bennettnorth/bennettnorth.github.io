@@ -20,6 +20,8 @@ class Bird {
     this.width = 32;
     this.height = 32;
 
+    this.isOver = false;
+
   }
 
   show() {
@@ -31,12 +33,19 @@ class Bird {
     this.velocity = this.lift;
   }
 
+  wrongAnswer() {
+    this.isOver = true;
+  }
+
   update() {
-    if (this.y >= 340) {
+    if (this.y >= 340 & this.isOver!=true) {
       this.up();
+      this.velocity += this.gravity;
+      this.y += this.velocity;
+    } else if (this.isOver==true) {
+      this.velocity = 0
     }
-    this.velocity += this.gravity;
-    this.y += this.velocity;
+
 
     if (this.y >= height - this.height / 2) {
       this.y = height - this.height / 2;
