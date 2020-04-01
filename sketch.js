@@ -62,7 +62,6 @@ function draw() {
     }
   }
 
-  count++;
 
   for (var i = pipes.length - 1; i >= 0; i--) {
     pipes[i].update();
@@ -70,6 +69,7 @@ function draw() {
 
     if (pipes[i].pass(bird)) {
       score++;
+      count++;
     }
 
     if (pipes[i].hits(bird)) {
@@ -80,16 +80,6 @@ function draw() {
       pipes.splice(i, 1);
     }
   }
-  // if (!isOver) {
-  //   setTimeout(function flappy() {
-  //     console.log('hello');
-  //     //bird.up()
-  //   }, 100000)
-  // }
-
-  // if (count % 110 == 0 || count/30 == 0.5) {
-  //   bird.up();
-  // }
 
   bird.update();
   bird.show();
@@ -97,6 +87,21 @@ function draw() {
   if ((frameCount - gameoverFrame) % 150 == 0) {
     pipes.push(new Pipe());
   }
+
+  if (count==5) {
+    noLoop();
+    bird.wrongAnswer();
+    bird.update();
+    loop();
+    // call a function returns true or false
+    // if (true) {
+    //   loop()
+    // } else {
+    //   false
+    // }
+
+  }
+  //print(count)
 
   showScores();
 
@@ -153,7 +158,8 @@ function reset() {
 
 function keyPressed() {
   if (key === ' ') {
-    bird.up();
+    //bird.up();
+    gameover()
     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   }
 
