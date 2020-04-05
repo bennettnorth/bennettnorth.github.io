@@ -88,6 +88,7 @@ function draw() {
     pipes.push(new Pipe());
   }
 
+// this is where we are going to put the prompt for questions
   if (count==5) {
     //noLoop()
     // call a function returns true or false
@@ -117,11 +118,6 @@ function draw() {
 
   // updates prevTouched
   prevTouched = touched;
-
-  // while(!isOver) {
-  //   console.log('test test')
-  //   setTimeout(await flappy(), 100000);
-  // }
 
 }
 
