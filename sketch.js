@@ -26,6 +26,7 @@ var touched = false;
 var prevTouched = touched;
 
 var count = 0;
+var startTheGame = false;
 
 // var currTime = new Date();
 // var startTime = 0;
@@ -41,7 +42,9 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
-  // startTime = currTime.getSecounds();
+  start_game_button = createButton('Start Game');
+  start_game_button.position(400,300);
+  start_game_button.mousePressed(startGame);
 }
 
 function draw() {
@@ -63,61 +66,63 @@ function draw() {
   }
 
 
-  for (var i = pipes.length - 1; i >= 0; i--) {
-    pipes[i].update();
-    pipes[i].show();
+  if (startTheGame) {
+    for (var i = pipes.length - 1; i >= 0; i--) {
+      pipes[i].update();
+      pipes[i].show();
 
-    if (pipes[i].pass(bird)) {
-      score++;
-      count++;
+      if (pipes[i].pass(bird)) {
+        score++;
+        count++;
+      }
+
+      if (pipes[i].hits(bird)) {
+        gameover();
+      }
+
+      if (pipes[i].offscreen()) {
+        pipes.splice(i, 1);
+      }
     }
 
-    if (pipes[i].hits(bird)) {
-      gameover();
-    }
-
-    if (pipes[i].offscreen()) {
-      pipes.splice(i, 1);
-    }
-  }
-
-  bird.update();
-  bird.show();
-
-  if ((frameCount - gameoverFrame) % 150 == 0) {
-    pipes.push(new Pipe());
-  }
-
-// this is where we are going to put the prompt for questions
-  if (count==5) {
-    //noLoop()
-    // call a function returns true or false
-    // if (true) {
-    //   loop()
-    // } else {
-    //   false
-    // }
-    bird.wrongAnswer();
     bird.update();
+    bird.show();
+
+    if ((frameCount - gameoverFrame) % 150 == 0) {
+      pipes.push(new Pipe());
+    }
+
+  // this is where we are going to put the prompt for questions
+    if (count==5) {
+      //noLoop()
+      // call a function returns true or false
+      // if (true) {
+      //   loop()
+      // } else {
+      //   false
+      // }
+      bird.wrongAnswer();
+      bird.update();
+    }
+    //print(count)
+
+    showScores();
+
+    // touches is an list that contains the positions of all
+    // current touch points positions and IDs
+    // here we check if touches' length is bigger than one
+    // and set it to the touched var
+    touched = (touches.length > 0);
+
+    // if user has touched then make bird jump
+    // also checks if not touched before
+    if (touched && !prevTouched) {
+      bird.up();
+    }
+
+    // updates prevTouched
+    prevTouched = touched;
   }
-  //print(count)
-
-  showScores();
-
-  // touches is an list that contains the positions of all
-  // current touch points positions and IDs
-  // here we check if touches' length is bigger than one
-  // and set it to the touched var
-  touched = (touches.length > 0);
-
-  // if user has touched then make bird jump
-  // also checks if not touched before
-  if (touched && !prevTouched) {
-    bird.up();
-  }
-
-  // updates prevTouched
-  prevTouched = touched;
 
 }
 
@@ -134,6 +139,14 @@ function gameover() {
   textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   isOver = true;
+
+  restart_button = createButton('Restart');
+  restart_button.position(350, 300);
+  restart_button.mousePressed(startGame);
+
+  leave_button = createButton('Main Menu');
+  leave_button.position(325, 300);
+  leave_button.mousePressed(endGame);
 
   noLoop();
 }
@@ -163,15 +176,20 @@ function touchStarted() {
   if (isOver) reset();
 }
 
-// async function flappy() {
-//   console.log('hello');
-//   // while (!isOver) {
-//   //   bird.up();
-//   //   setTimeout(await flappy(), 10000);
-//   // }
-//   // reset();
-//   //bird.up();
-//   // bird.update();
-//   // bird.show();
-//   setTimeout(await flappy(), 10000);
-// }
+function startGame() {
+  startTheGame=true;
+  if (isOver) {
+    restart_button.remove();
+  } else {
+    start_game_button.remove();
+  }
+
+}
+
+function endGame() {
+  startTheGame=false;
+  leave_button.remove();
+  start_game_button = createButton('Start Game');
+  start_game_button.position(400,300);
+  start_game_button.mousePressed(startGame);
+}
