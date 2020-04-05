@@ -141,11 +141,11 @@ function gameover() {
   isOver = true;
 
   restart_button = createButton('Restart');
-  restart_button.position(350, 300);
+  restart_button.position(400, 250);
   restart_button.mousePressed(startGame);
 
   leave_button = createButton('Main Menu');
-  leave_button.position(325, 300);
+  leave_button.position(400, 225);
   leave_button.mousePressed(endGame);
 
   noLoop();
@@ -163,23 +163,25 @@ function reset() {
   loop();
 }
 
-function keyPressed() {
-  if (key === ' ') {
-    //bird.up();
-    gameover()
-    if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
-  }
-
-}
-
-function touchStarted() {
-  if (isOver) reset();
-}
+// function keyPressed() {
+//   if (key === ' ') {
+//     //bird.up();
+//     gameover()
+//     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
+//   }
+//
+// }
+//
+// function touchStarted() {
+//   if (isOver) reset();
+// }
 
 function startGame() {
   startTheGame=true;
   if (isOver) {
     restart_button.remove();
+    leave_button.remove();
+    reset();
   } else {
     start_game_button.remove();
   }
@@ -189,6 +191,8 @@ function startGame() {
 function endGame() {
   startTheGame=false;
   leave_button.remove();
+  restart_button.remove();
+  
   start_game_button = createButton('Start Game');
   start_game_button.position(400,300);
   start_game_button.mousePressed(startGame);
