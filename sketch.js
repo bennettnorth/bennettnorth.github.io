@@ -141,11 +141,11 @@ function gameover() {
   isOver = true;
 
   restart_button = createButton('Restart');
-  restart_button.position(400, 250);
+  restart_button.position(400, 325);
   restart_button.mousePressed(startGame);
 
   leave_button = createButton('Main Menu');
-  leave_button.position(400, 225);
+  leave_button.position(400, 350);
   leave_button.mousePressed(endGame);
 
   noLoop();
@@ -192,8 +192,8 @@ function endGame() {
   startTheGame=false;
   leave_button.remove();
   restart_button.remove();
-  
-  start_game_button = createButton('Start Game');
+
+  let start_game_button = createButton('Start Game');
   start_game_button.position(400,300);
   start_game_button.mousePressed(startGame);
 }
