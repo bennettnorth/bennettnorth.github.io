@@ -30,7 +30,7 @@ var startTheGame = false;
 
 var goToSettings = false;
 
-let title_text = 'Mathy Bird';
+var gameFrameCount = 0;
 
 // var currTime = new Date();
 // var startTime = 0;
@@ -48,10 +48,10 @@ function setup() {
   reset();
 
   start_game_button = createButton('Start Game');
-  start_game_button.position(400,300);
+  start_game_button.position(400,350);
 
   settings_button = createButton('Settings');
-  settings_button.position(400,325);
+  settings_button.position(400,375);
 
   restart_button = createButton('Restart');
   restart_button.position(380, 400);
@@ -120,11 +120,16 @@ function draw() {
       bgX = 0;
     }
   }
+  if (!startTheGame) {
+    textSize(64);
+    textAlign(CENTER, TOP-CENTER);
+    text('Mathy Bird', width / 2, height / 2);
+    textAlign(LEFT, BASELINE);
+  }
 
-  
 
   if (startTheGame) {
-    title_text.hide();
+    gameFrameCount++;
     for (var i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
       pipes[i].show();
@@ -146,7 +151,7 @@ function draw() {
     bird.update();
     bird.show();
 
-    if ((frameCount - gameoverFrame) % 150 == 0) {
+    if ((gameFrameCount - gameoverFrame) % 150 == 0) {
       pipes.push(new Pipe());
     }
 
@@ -162,7 +167,6 @@ function draw() {
       bird.wrongAnswer();
       bird.update();
     }
-    //print(count)
 
     showScores();
 
@@ -170,16 +174,16 @@ function draw() {
     // current touch points positions and IDs
     // here we check if touches' length is bigger than one
     // and set it to the touched var
-    touched = (touches.length > 0);
-
-    // if user has touched then make bird jump
-    // also checks if not touched before
-    if (touched && !prevTouched) {
-      bird.up();
-    }
-
-    // updates prevTouched
-    prevTouched = touched;
+    // touched = (touches.length > 0);
+    //
+    // // if user has touched then make bird jump
+    // // also checks if not touched before
+    // if (touched && !prevTouched) {
+    //   bird.up();
+    // }
+    //
+    // // updates prevTouched
+    // prevTouched = touched;
   } else if (goToSettings) {
       // this is where we can add costomization
       textSize(64);
