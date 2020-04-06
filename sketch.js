@@ -28,6 +28,8 @@ var prevTouched = touched;
 var count = 0;
 var startTheGame = false;
 
+var goToSettings = false;
+
 // var currTime = new Date();
 // var startTime = 0;
 // var endTime = 0;
@@ -42,9 +44,61 @@ function preload() {
 function setup() {
   createCanvas(800, 600);
   reset();
+
   start_game_button = createButton('Start Game');
   start_game_button.position(400,300);
-  start_game_button.mousePressed(startGame);
+
+  settings_button = createButton('Settings');
+  settings_button.position(400,325);
+
+  restart_button = createButton('Restart');
+  restart_button.position(380, 400);
+  restart_button.hide();
+
+  leave_button = createButton('Main Menu');
+  leave_button.position(380, 425);
+  leave_button.hide();
+
+  return_to_main = createButton('Return to Main Menu');
+  return_to_main.position(600, 500);
+  return_to_main.hide();
+
+  start_game_button.mousePressed(() => {
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+  });
+
+  settings_button.mousePressed(() => {
+    goToSettings=true;
+    start_game_button.hide();
+    settings_button.hide();
+    return_to_main.show();
+  });
+
+  restart_button.mousePressed(() => {
+    startTheGame=true;
+    restart_button.hide();
+    leave_button.hide();
+    reset();
+  });
+
+  leave_button.mousePressed(() => {
+    startTheGame=false;
+    leave_button.hide();
+    restart_button.hide();
+    start_game_button.show();
+    settings_button.show();
+    reset();
+  });
+
+  return_to_main.mousePressed(() => {
+    goToSettings = false;
+    start_game_button.show();
+    settings_button.show();
+    return_to_main.hide();
+  });
+
 }
 
 function draw() {
@@ -64,6 +118,7 @@ function draw() {
       bgX = 0;
     }
   }
+
 
 
   if (startTheGame) {
@@ -93,7 +148,7 @@ function draw() {
     }
 
   // this is where we are going to put the prompt for questions
-    if (count==5) {
+    if (count==3) {
       //noLoop()
       // call a function returns true or false
       // if (true) {
@@ -122,6 +177,12 @@ function draw() {
 
     // updates prevTouched
     prevTouched = touched;
+  } else if (goToSettings) {
+      // this is where we can add costomization
+      textSize(64);
+      textAlign(CENTER, CENTER);
+      text('COMING SOON', width / 2, height / 2);
+      textAlign(LEFT, BASELINE);
   }
 
 }
@@ -140,13 +201,8 @@ function gameover() {
   maxScore = max(score, maxScore);
   isOver = true;
 
-  restart_button = createButton('Restart');
-  restart_button.position(400, 325);
-  restart_button.mousePressed(startGame);
-
-  leave_button = createButton('Main Menu');
-  leave_button.position(400, 350);
-  leave_button.mousePressed(endGame);
+  leave_button.show();
+  restart_button.show();
 
   noLoop();
 }
@@ -175,25 +231,3 @@ function reset() {
 // function touchStarted() {
 //   if (isOver) reset();
 // }
-
-function startGame() {
-  startTheGame=true;
-  if (isOver) {
-    restart_button.remove();
-    leave_button.remove();
-    reset();
-  } else {
-    start_game_button.remove();
-  }
-
-}
-
-function endGame() {
-  startTheGame=false;
-  leave_button.remove();
-  restart_button.remove();
-
-  let start_game_button = createButton('Start Game');
-  start_game_button.position(400,300);
-  start_game_button.mousePressed(startGame);
-}
