@@ -30,6 +30,8 @@ var startTheGame = false;
 
 var goToSettings = false;
 
+let title_text = 'Mathy Bird';
+
 // var currTime = new Date();
 // var startTime = 0;
 // var endTime = 0;
@@ -119,9 +121,10 @@ function draw() {
     }
   }
 
-
+  
 
   if (startTheGame) {
+    title_text.hide();
     for (var i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
       pipes[i].show();
