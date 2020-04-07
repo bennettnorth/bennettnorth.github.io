@@ -32,6 +32,8 @@ var goToSettings = false;
 
 var gameFrameCount = 0;
 
+var answerA = getAnswerChoiceA();
+
 // var currTime = new Date();
 // var startTime = 0;
 // var endTime = 0;
@@ -65,27 +67,31 @@ function setup() {
   return_to_main.position(600, 500);
   return_to_main.hide();
 
-  start_game_button.mousePressed(() => {
+  // answer_choice_A = createButton(answerA);
+  // answer_choice_A.position(700, 300);
+
+
+  start_game_button.mousePressed(() => { // home menu start
     startTheGame=true;
     start_game_button.hide();
     settings_button.hide();
   });
 
-  settings_button.mousePressed(() => {
+  settings_button.mousePressed(() => { // go to settings
     goToSettings=true;
     start_game_button.hide();
     settings_button.hide();
     return_to_main.show();
   });
 
-  restart_button.mousePressed(() => {
+  restart_button.mousePressed(() => { // restart the game w/out going to menu
     startTheGame=true;
     restart_button.hide();
     leave_button.hide();
     reset();
   });
 
-  leave_button.mousePressed(() => {
+  leave_button.mousePressed(() => { // return to main menu from game
     startTheGame=false;
     leave_button.hide();
     restart_button.hide();
@@ -94,7 +100,7 @@ function setup() {
     reset();
   });
 
-  return_to_main.mousePressed(() => {
+  return_to_main.mousePressed(() => { // return to main menu from settings
     goToSettings = false;
     start_game_button.show();
     settings_button.show();
@@ -155,7 +161,15 @@ function draw() {
       pipes.push(new Pipe());
     }
 
+    // if ((frameCount - gameoverFrame) % 150 == 0) {
+    //   pipes.push(new Pipe());
+    // }
+
   // this is where we are going to put the prompt for questions
+    // user_answer = false
+    // if (rightAnswer()) {
+    //   continue;
+    // } else if ((count%3==0) & (user_answer!=true)) {
     if (count==3) {
       //noLoop()
       // call a function returns true or false
@@ -221,8 +235,10 @@ function reset() {
   pipes = [];
   bird = new Bird();
   pipes.push(new Pipe());
-  gameoverFrame = frameCount - 1;
+  //gameoverFrame = frameCount - 1;
+  gameoverFrame = gameFrameCount - 1;
   count = 0;
+  gameFrameCount = 0;
   loop();
 }
 
@@ -237,4 +253,23 @@ function reset() {
 //
 // function touchStarted() {
 //   if (isOver) reset();
+// }
+
+// function createQuestion(gameFrameCount) {
+//   let strings_of_equations = ['+', '-', 'x', '/'];
+//
+//   //generate random range_of_numbers
+//   let x = Math.random(9);
+//   let y = Math.random(9);
+//
+//   return x + ' ' + strings_of_equations[Math.random(strings_of_equations.length-1)] + ' ' y + ' =  ?';
+//
+// }
+
+// function getAnswerChoiceA() {
+//   if (startTheGame) {
+//     return 'A: 3';
+//   } else {
+//     return 'A';
+//   }
 // }
