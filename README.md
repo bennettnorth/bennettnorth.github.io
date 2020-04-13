@@ -1,9 +1,12 @@
-# Flappy Bird Clone
+# Mathy Bird - A Flappy Bird clone
 
-This is a copy of the following stuff - not our link at the bottom.
+Welcome to our COMP 580 Project - Mathy Bird. This game is a verision of flapy bird that has been modified so the way the bird flaps through the pipes is by answering simple math questions. We constructed this game so it can be played by people with motor impariments. 
 
-This repository is starting with the code from [Coding Challenge #31 on YouTube](https://www.youtube.com/watch?v=cXgA1d_E-jY). I am accepting pull requests for bug fixes, minor improvements to gameplay, and visual design. I do not want to make the code more complex as the goal is to use this as a basis for a "neuro-evolution" tutorial with the "toy" [neural network library](https://github.com/CodingTrain/Toy-Neural-Network-JS/).
+The game is simple: Select the right answer to the math question before the bird passes through 5 pipes.
 
-Coding Train themed graphics are welcome! (But keep it simple!)
+Enjoy!
 
-* [Play the game!](https://codingtrain.github.io/Flappy-Bird-Clone/)
+
+Link to source video and code:
+[Coding Challenge #31 on YouTube](https://www.youtube.com/watch?v=cXgA1d_E-jY)
+[Play the game!](https://codingtrain.github.io/Flappy-Bird-Clone/)
