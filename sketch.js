@@ -85,11 +85,11 @@ function setup() {
   answer_choice_A.position(15, 35);
 
   answer_B = createButton("B");
-  answer_B.position(790, 32);
+  answer_B.position(785, 32);
   answer_B.hide();
 
   answer_choice_B = createP(' ');
-  answer_choice_B.position(790, 35);
+  answer_choice_B.position(785, 35);
 
   answer_C = createButton("C");
   answer_C.position(15, 560);
@@ -99,11 +99,11 @@ function setup() {
   answer_choice_C.position(15, 570);
 
   answer_D = createButton("D");
-  answer_D.position(790, 560);
+  answer_D.position(785, 560);
   answer_D.hide();
 
   answer_choice_D = createP(' ');
-  answer_choice_D.position(790, 570);
+  answer_choice_D.position(785, 570);
 
   answer_A.mousePressed(() => {
     if (correctAnswerChoice == 0) {
