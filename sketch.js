@@ -34,6 +34,16 @@ var gameFrameCount = 0;
 
 var userAnswer = false;
 
+var correctAnswerChoice;
+
+var answer_choice_A;
+var answer_choice_B;
+var answer_choice_C;
+var answer_choice_D;
+
+var question;
+var new_question = false;
+
 // var currTime = new Date();
 // var startTime = 0;
 // var endTime = 0;
@@ -50,26 +60,82 @@ function setup() {
   reset();
 
   start_game_button = createButton('Start Game');
-  start_game_button.position(400,350);
+  start_game_button.position(width/2,height/2);
 
   settings_button = createButton('Settings');
-  settings_button.position(400,375);
+  settings_button.position(width/2,(height/2)+25);
 
   restart_button = createButton('Restart');
-  restart_button.position(380, 400);
+  restart_button.position(width/2, (height/2)+25);
   restart_button.hide();
 
   leave_button = createButton('Main Menu');
-  leave_button.position(380, 425);
+  leave_button.position(width/2, (height/2)+50);
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
   return_to_main.position(600, 500);
   return_to_main.hide();
 
-  // answer_choice_A = createButton(answerA);
-  // answer_choice_A.position(700, 300);
+  answer_A = createButton("A");
+  answer_A.position(15, 32);
+  answer_A.hide();
 
+  answer_choice_A = createP(' ');
+  answer_choice_A.position(15, 35);
+
+  answer_B = createButton("B");
+  answer_B.position(790, 32);
+  answer_B.hide();
+
+  answer_choice_B = createP(' ');
+  answer_choice_B.position(790, 35);
+
+  answer_C = createButton("C");
+  answer_C.position(15, 560);
+  answer_C.hide();
+
+  answer_choice_C = createP(' ');
+  answer_choice_C.position(15, 570);
+
+  answer_D = createButton("D");
+  answer_D.position(790, 560);
+  answer_D.hide();
+
+  answer_choice_D = createP(' ');
+  answer_choice_D.position(790, 570);
+
+  answer_A.mousePressed(() => {
+    if (correctAnswerChoice == 0) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
+  });
+
+  answer_B.mousePressed(() => {
+    if (correctAnswerChoice == 1) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
+  });
+
+  answer_C.mousePressed(() => {
+    if (correctAnswerChoice == 2) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
+  });
+
+  answer_D.mousePressed(() => {
+    if (correctAnswerChoice == 3) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
+  });
 
   start_game_button.mousePressed(() => { // home menu start
     startTheGame=true;
@@ -107,6 +173,7 @@ function setup() {
     return_to_main.hide();
   });
 
+
 }
 
 function draw() {
@@ -126,16 +193,36 @@ function draw() {
       bgX = 0;
     }
   }
+
   if (!startTheGame) {
     textSize(64);
     textAlign(CENTER, TOP-CENTER);
-    text('Mathy Bird', width / 2, (height / 2) - 300);
+    text('Mathy Bird', width / 2, (height / 2) - 150);
     //text('Mathy Bird', 30, 100);
     textAlign(LEFT, BASELINE);
   }
 
 
   if (startTheGame) {
+    if (gameFrameCount==0) {
+      question = createQuestion();
+    }
+    answer_A.show();
+    answer_B.show();
+    answer_C.show();
+    answer_D.show();
+
+    if (!isOver) {
+      textSize(64);
+      textAlign(CENTER, TOP-CENTER);
+      text(question, width / 2, (height / 2) - 150);
+      textAlign(LEFT, BASELINE);
+
+      textSize(25);
+      var pipeCount = 3-count;
+      text('Pipes left: ' + pipeCount.toString(), width / 2, height - 550);
+    }
+
     gameFrameCount++;
     for (var i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -168,10 +255,11 @@ function draw() {
 
 
   // after every 5 pipes, check if the user's answer was correct
-    if (count==5) {
+    if (count==3) {
       if (userAnswer) {
         count=0;
         userAnswer=false;
+        question = createQuestion();
       } else {
         bird.wrongAnswer();
         bird.update();
@@ -206,8 +294,8 @@ function draw() {
 
 function showScores() {
   textSize(32);
-  text('score: ' + score, 1, 32);
-  text('record: ' + maxScore, 1, 64);
+  text('score: ' + score, width/2, height-50);
+  text('record: ' + maxScore, width/2, height-30);
 }
 
 function gameover() {
@@ -220,6 +308,16 @@ function gameover() {
 
   leave_button.show();
   restart_button.show();
+
+  answer_A.hide();
+  answer_B.hide();
+  answer_C.hide();
+  answer_D.hide();
+
+  answer_choice_A.html(' ');
+  answer_choice_B.html(' ');
+  answer_choice_C.html(' ');
+  answer_choice_D.html(' ');
 
   noLoop();
 }
@@ -251,21 +349,57 @@ function reset() {
 //   if (isOver) reset();
 // }
 
-// function createQuestion(gameFrameCount) {
-//   let strings_of_equations = ['+', '-', 'x', '/'];
-//
-//   //generate random range_of_numbers
-//   let x = Math.random(9);
-//   let y = Math.random(9);
-//
-//   return x + ' ' + strings_of_equations[Math.random(strings_of_equations.length-1)] + ' ' y + ' =  ?';
-//
-// }
+function createQuestion() {
+  let strings_of_equations = ['+', '-', 'x', '/'];
 
-// function getAnswerChoiceA() {
-//   if (startTheGame) {
-//     return 'A: 3';
-//   } else {
-//     return 'A';
-//   }
-// }
+  //generate random range_of_numbers
+  let x = Math.floor(Math.random() * Math.floor(10))
+  let y = Math.floor(Math.random() * Math.floor(10))
+  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length-1))
+
+  var correctAnswer = 0;
+
+  switch(z) {
+    case 0:
+      correctAnswer=x+y;
+      break;
+    case 1:
+      correctAnswer=x-y;
+      break;
+    case 2:
+      correctAnswer=x*y;
+      break;
+    case 3:
+      correctAnswer=x/y;
+      break;
+  }
+
+  var choices = [correctAnswer, correctAnswer+1, correctAnswer-1, correctAnswer+2];
+  shuffle(choices);
+
+  answer_choice_A.html(choices[0]);
+  answer_choice_B.html(choices[1]);
+  answer_choice_C.html(choices[2]);
+  answer_choice_D.html(choices[3]);
+
+  switch (choices.findIndex(element => element==correctAnswer)) {
+    case 0:
+      correctAnswerChoice = 0;
+      break;
+    case 1:
+      correctAnswerChoice = 1;
+      break;
+    case 2:
+      correctAnswerChoice = 2;
+      break;
+    case 3:
+      correctAnswerChoice =3;
+      break;
+  }
+
+  var rs = x.toString().concat(' ', strings_of_equations[z]);
+  rs = rs.concat(' ', y.toString());
+
+  return rs.concat(' =  ?');
+
+}
