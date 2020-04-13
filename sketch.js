@@ -32,7 +32,7 @@ var goToSettings = false;
 
 var gameFrameCount = 0;
 
-var answerA = getAnswerChoiceA();
+var userAnswer = false;
 
 // var currTime = new Date();
 // var startTime = 0;
@@ -129,7 +129,8 @@ function draw() {
   if (!startTheGame) {
     textSize(64);
     textAlign(CENTER, TOP-CENTER);
-    text('Mathy Bird', width / 2, height / 2);
+    text('Mathy Bird', width / 2, (height / 2) - 300);
+    //text('Mathy Bird', 30, 100);
     textAlign(LEFT, BASELINE);
   }
 
@@ -165,21 +166,16 @@ function draw() {
     //   pipes.push(new Pipe());
     // }
 
-  // this is where we are going to put the prompt for questions
-    // user_answer = false
-    // if (rightAnswer()) {
-    //   continue;
-    // } else if ((count%3==0) & (user_answer!=true)) {
-    if (count==3) {
-      //noLoop()
-      // call a function returns true or false
-      // if (true) {
-      //   loop()
-      // } else {
-      //   false
-      // }
-      bird.wrongAnswer();
-      bird.update();
+
+  // after every 5 pipes, check if the user's answer was correct
+    if (count==5) {
+      if (userAnswer) {
+        count=0;
+        userAnswer=false;
+      } else {
+        bird.wrongAnswer();
+        bird.update();
+      }
     }
 
     showScores();
