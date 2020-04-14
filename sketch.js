@@ -71,7 +71,7 @@ function setup() {
   restart_button.hide();
 
   leave_button = createButton('Main Menu');
-  leave_button.position(width/2, (height/2)+110);
+  leave_button.position(width/2, (height/2)+120);
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
