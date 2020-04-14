@@ -376,7 +376,8 @@ function createQuestion() {
 
   var choices = [correctAnswer, correctAnswer+1, correctAnswer-1, correctAnswer+2];
   randomized = shuffle(choices);
-  
+  console.log(randomized)
+  console.log(choices)
   answer_choice_A.html(randomized[0]);
   answer_choice_B.html(randomized[1]);
   answer_choice_C.html(randomized[2]);
