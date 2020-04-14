@@ -9,4 +9,4 @@ Enjoy!
 
 Link to source video and code:
 * [Coding Challenge #31 on YouTube](https://www.youtube.com/watch?v=cXgA1d_E-jY)
-* [Play the game!](https://codingtrain.github.io/Flappy-Bird-Clone/)
+* [Play the game!](https://bennettnorth.github.io/)
