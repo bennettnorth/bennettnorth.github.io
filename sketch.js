@@ -44,6 +44,7 @@ var answer_choice_D;
 var question;
 var new_question = false;
 
+var correctAnswer = 0;
 // var currTime = new Date();
 // var startTime = 0;
 // var endTime = 0;
@@ -66,11 +67,11 @@ function setup() {
   settings_button.position(width/2,(height/2)+25);
 
   restart_button = createButton('Restart');
-  restart_button.position(width/2, (height/2)+25);
+  restart_button.position(width/2, (height/2)+100);
   restart_button.hide();
 
   leave_button = createButton('Main Menu');
-  leave_button.position(width/2, (height/2)+50);
+  leave_button.position(width/2, (height/2)+110);
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
@@ -254,7 +255,7 @@ function draw() {
     // }
 
 
-  // after every 5 pipes, check if the user's answer was correct
+  // after every 3 pipes, check if the user's answer was correct
     if (count==3) {
       if (userAnswer) {
         count=0;
@@ -303,6 +304,11 @@ function gameover() {
   textAlign(CENTER, CENTER);
   text('GAMEOVER', width / 2, height / 2);
   textAlign(LEFT, BASELINE);
+  let correctString = 'Correct Answer: '
+  textSize(24);
+  textAlign(CENTER, CENTER);
+  text(correctString.concat(correctAnswer.toString()), width / 2, (height / 2)+50);
+  textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   isOver = true;
 
@@ -336,19 +342,6 @@ function reset() {
   loop();
 }
 
-// function keyPressed() {
-//   if (key === ' ') {
-//     //bird.up();
-//     gameover()
-//     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
-//   }
-//
-// }
-//
-// function touchStarted() {
-//   if (isOver) reset();
-// }
-
 function createQuestion() {
   let strings_of_equations = ['+', '-', 'x', '/'];
 
@@ -357,7 +350,10 @@ function createQuestion() {
   let y = Math.floor(Math.random() * Math.floor(10))
   let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length-1))
 
-  var correctAnswer = 0;
+  while (x == 0 && y == 0) {
+    x = Math.floor(Math.random() * Math.floor(10))
+    y = Math.floor(Math.random() * Math.floor(10))
+  }
 
   switch(z) {
     case 0:
@@ -370,20 +366,28 @@ function createQuestion() {
       correctAnswer=x*y;
       break;
     case 3:
+      while (y==0) {
+        y = Math.floor(Math.random() * Math.floor(10))
+      }
       correctAnswer=x/y;
       break;
   }
 
-  var choices = [correctAnswer, correctAnswer+1, correctAnswer-1, correctAnswer+2];
-  randomized = shuffle(choices);
-  console.log(randomized)
-  console.log(choices)
-  answer_choice_A.html(randomized[0]);
-  answer_choice_B.html(randomized[1]);
-  answer_choice_C.html(randomized[2]);
-  answer_choice_D.html(randomized[3]);
+  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-x,correctAnswer+x));
+  while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
+    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+y));
+  }
 
-  switch (choices.findIndex(element => element==correctAnswer)) {
+  let choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
+
+  let shuffled = shuffle(choices);
+
+  answer_choice_A.html(shuffled[0]);
+  answer_choice_B.html(shuffled[1]);
+  answer_choice_C.html(shuffled[2]);
+  answer_choice_D.html(shuffled[3]);
+
+  switch (shuffled.findIndex(element => element==correctAnswer)) {
     case 0:
       correctAnswerChoice = 0;
       break;
@@ -398,9 +402,47 @@ function createQuestion() {
       break;
   }
 
-  var rs = x.toString().concat(' ', strings_of_equations[z]);
-  rs = rs.concat(' ', y.toString());
+  var return_string = x.toString().concat(' ', strings_of_equations[z]);
+  return_string = return_string.concat(' ', y.toString());
 
-  return rs.concat(' =  ?');
+  return return_string.concat(' =  ?');
 
 }
+
+// stolen from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+
+
+
+// unused code from og code
+// function keyPressed() {
+//   if (key === ' ') {
+//     //bird.up();
+//     gameover()
+//     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
+//   }
+//
+// }
+//
+// function touchStarted() {
+//   if (isOver) reset();
+// }
