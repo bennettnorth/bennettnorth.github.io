@@ -373,9 +373,9 @@ function createQuestion() {
       break;
   }
 
-  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-x,correctAnswer+x));
+  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
   while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
-    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+y));
+    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
   }
 
   let choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
