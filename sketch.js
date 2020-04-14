@@ -375,12 +375,12 @@ function createQuestion() {
   }
 
   var choices = [correctAnswer, correctAnswer+1, correctAnswer-1, correctAnswer+2];
-  shuffle(choices);
-
-  answer_choice_A.html(choices[0]);
-  answer_choice_B.html(choices[1]);
-  answer_choice_C.html(choices[2]);
-  answer_choice_D.html(choices[3]);
+  randomized = shuffle(choices);
+  
+  answer_choice_A.html(randomized[0]);
+  answer_choice_B.html(randomized[1]);
+  answer_choice_C.html(randomized[2]);
+  answer_choice_D.html(randomized[3]);
 
   switch (choices.findIndex(element => element==correctAnswer)) {
     case 0:
