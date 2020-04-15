@@ -174,6 +174,13 @@ function setup() {
     return_to_main.hide();
   });
 
+  // starWarsButton.mousePressed( () => {
+  //   pipeBodySprite = loadImage('graphics/pipe_body.png');
+  //   pipePeakSprite = loadImage('graphics/pipe_body.png');
+  //   birdSprite = loadImage('graphics/og_bird.png');
+  //   bgImg = loadImage('graphics/background.png');
+  // });
+
 
 }
 
@@ -348,12 +355,14 @@ function createQuestion() {
   //generate random range_of_numbers
   let x = Math.floor(Math.random() * Math.floor(10))
   let y = Math.floor(Math.random() * Math.floor(10))
-  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length-1))
+  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length))
 
   while (x == 0 && y == 0) {
     x = Math.floor(Math.random() * Math.floor(10))
     y = Math.floor(Math.random() * Math.floor(10))
   }
+
+  let zeroCatch = false;
 
   switch(z) {
     case 0:
@@ -364,21 +373,35 @@ function createQuestion() {
       break;
     case 2:
       correctAnswer=x*y;
+      if (x==0 || y==0) {
+        zeroCatch = true;
+      }
       break;
     case 3:
-      while (y==0) {
+      while (y==0 || x%y!=0) {
         y = Math.floor(Math.random() * Math.floor(10))
+      }
+      if (x==0) {
+        zeroCarch = true;
       }
       correctAnswer=x/y;
       break;
   }
 
-  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
-  while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
-    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
-  }
+  let randomChoice;
+  let choices;
 
-  let choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
+  console.log('maybe we fixed it');
+
+  if (zeroCatch) {
+    choices = [correctAnswer, 1, 10, -1];
+  } else {
+    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
+    while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
+      randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
+    }
+    choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
+  }
 
   let shuffled = shuffle(choices);
 
@@ -398,7 +421,7 @@ function createQuestion() {
       correctAnswerChoice = 2;
       break;
     case 3:
-      correctAnswerChoice =3;
+      correctAnswerChoice = 3;
       break;
   }
 
@@ -406,7 +429,6 @@ function createQuestion() {
   return_string = return_string.concat(' ', y.toString());
 
   return return_string.concat(' =  ?');
-
 }
 
 // stolen from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
