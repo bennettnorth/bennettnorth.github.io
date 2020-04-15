@@ -350,12 +350,12 @@ function reset() {
 }
 
 function createQuestion() {
-  let strings_of_equations = ['+', '-', 'x', '/'];
+  let strings_of_equations = ['+', '-', 'x', '/']; // add filter
 
   //generate random range_of_numbers
-  let x = Math.floor(Math.random() * Math.floor(10))
+  let x = Math.floor(Math.random() * Math.floor(10)) // change 10 to a factor variable
   let y = Math.floor(Math.random() * Math.floor(10))
-  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length))
+  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
 
   while (x == 0 && y == 0) {
     x = Math.floor(Math.random() * Math.floor(10))
