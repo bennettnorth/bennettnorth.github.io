@@ -137,6 +137,28 @@ function draw() {
       if (pipes[i].pass(bird)) {
         score++;
         count++;
+        // if displayQuestion(true) {
+          //call question content into screen
+          // user selects the answer
+            //if(true)
+                //break
+          // if(false)
+            // gameover()
+        //}
+        // function createQuestion(){
+        //   let arrayofEquations = ['x','+','-','/'];
+        //   let arrayofIntegers = ['1','2','3','4','5','6','7','8','9','10'];
+        //
+        //   //gen random numbers
+        //   let eq = 0;
+        //   let int = 0;
+        //
+        //   return
+        //
+        // }
+
+      }
+
       }
 
       if (pipes[i].hits(bird)) {
@@ -225,6 +247,8 @@ function reset() {
   count = 0;
   loop();
 }
+
+
 
 // function keyPressed() {
 //   if (key === ' ') {
