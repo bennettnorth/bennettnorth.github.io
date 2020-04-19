@@ -388,7 +388,7 @@ function createQuestion() {
         y = Math.floor(Math.random() * Math.floor(10))
       }
       if (x==0) {
-        zeroCarch = true;
+        zeroCatch = true;
       }
       correctAnswer=x/y;
       break;
