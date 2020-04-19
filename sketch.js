@@ -368,8 +368,6 @@ function createQuestion() {
     y = Math.floor(Math.random() * Math.floor(10))
   }
 
-  let zeroCatch = false;
-
   switch(z) {
     case 0:
       correctAnswer=x+y;
@@ -384,8 +382,9 @@ function createQuestion() {
       }
       break;
     case 3:
-      while (y==0 || x%y!=0) {
-        y = Math.floor(Math.random() * Math.floor(10))
+      while (y==0 || x==0) {
+        y = Math.floor(Math.random() * Math.floor(10));
+        x = Math.floor(Math.random() * Math.floor(10));
       }
       if (x==0) {
         zeroCatch = true;
@@ -394,22 +393,23 @@ function createQuestion() {
       break;
   }
 
-  let randomChoice;
-  let choices;
-
   console.log('maybe we fixed it');
 
-  if (zeroCatch) {
-    choices = [correctAnswer, 1, 10, -1];
-  } else {
+  let danger = 0
+  
+  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
+  while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
     randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
-    while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
-      randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
-    }
-    choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
+    danger++;
+    if (danger>5) {
+      console.log('danger danger');
+      break;
+    } 
   }
+  let choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
+  
 
-  let shuffled = shuffle(choices);
+  let shuffled = shuffleThis(choices);
 
   answer_choice_A.html(shuffled[0]);
   answer_choice_B.html(shuffled[1]);
@@ -438,9 +438,9 @@ function createQuestion() {
 }
 
 // stolen from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-function shuffle(array) {
+function shuffleThis(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-
+  console.log('problem is not here:436');
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
 
