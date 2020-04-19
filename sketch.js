@@ -41,6 +41,12 @@ var answer_choice_B;
 var answer_choice_C;
 var answer_choice_D;
 
+var addition_only = false;
+var subtraction_only = false;
+var division_only = false;
+var multiplication_only = false; 
+
+
 var question;
 var new_question = false;
 
@@ -105,6 +111,24 @@ function setup() {
 
   answer_choice_D = createP(' ');
   answer_choice_D.position(785, 570);
+
+  // Adding Difficulty Buttons
+  addition_button = createButton('Addition Only');
+  addition_button.position(200, 300);
+  addition_button.hide();
+
+  subtraction_button = createButton('Subtraction Only');
+  subtraction_button.position(200, 400);
+  subtraction_button.hide();
+
+  division_button = createButton('Division Only');
+  division_button.position(200, 350);
+  division_button.hide();
+
+  multiplication_button = createButton('Multiplication Only');
+  multiplication_button.position(200, 250);
+  multiplication_button.hide();
+
 
   answer_A.mousePressed(() => {
     if (correctAnswerChoice == 0) {
@@ -174,6 +198,75 @@ function setup() {
     return_to_main.hide();
   });
 
+  // Math Button Functionality
+    //Addition 
+
+   // Addition Start the Game
+   addition_button.mousePressed(() => { // home menu start
+    subtraction_only = false;
+    division_only = false;
+    multiplication_only = false;
+
+    addition_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+
+   // Subtraction Start the Game
+   subtraction_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    division_only = false;
+    multiplication_only = false;
+
+    subtraction_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+   // Division Start the Game
+   division_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    subtraction_only = false;
+    multiplication_only = false;
+
+    division_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+
+    // Multiplication Start the Game
+    multiplication_button.mousePressed(() => { // home menu start
+      addition_only = false;
+      subtraction_only = false;
+      division_only = false;
+  
+      multiplication_only = true;
+      startTheGame=true;
+      start_game_button.hide();
+      settings_button.hide();
+      addition_button.hide();
+      subtraction_button.hide();
+      division_button.hide();
+      multiplication_button.hide();
+      return_to_main.hide();
+    });
 
 }
 
@@ -344,11 +437,29 @@ function reset() {
 
 function createQuestion() {
   let strings_of_equations = ['+', '-', 'x', '/']; // add filter
+  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
+
+  if(addition_only == true ){
+     z = 0;
+  } 
+  if(subtraction_only == true){
+     z = 1;
+  }
+  if(division_only == true){
+     z = 3;
+  }
+  if(multiplication_only == true){
+     z =2;
+  } 
+  
+  
+  
+  //let strings_of_equations = ['+', '-', 'x', '/']; // add filter
 
   //generate random range_of_numbers
   let x = Math.floor(Math.random() * Math.floor(10)) // change 10 to a factor variable
   let y = Math.floor(Math.random() * Math.floor(10))
-  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
+  //let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
 
   while (x == 0 && y == 0) {
     x = Math.floor(Math.random() * Math.floor(10))
