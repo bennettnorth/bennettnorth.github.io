@@ -172,6 +172,10 @@ function setup() {
     goToSettings=true;
     start_game_button.hide();
     settings_button.hide();
+    addition_button.show();
+    subtraction_button.show();
+    division_button.show();
+    multiplication_button.show();
     return_to_main.show();
   });
 
