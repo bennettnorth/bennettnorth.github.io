@@ -11,13 +11,16 @@ class Bird {
     this.y = height / 2;
     this.x = 64;
 
-    this.gravity = 0.0;
-    this.lift = -10;
+    this.gravity = 0.1;
+    this.lift = -5;
     this.velocity = 0;
 
     this.icon = birdSprite;
+
     this.width = 32;
     this.height = 32;
+
+    this.isOver = false;
 
   }
 
@@ -30,7 +33,19 @@ class Bird {
     this.velocity = this.lift;
   }
 
+  wrongAnswer() {
+    this.isOver = true;
+  }
+
   update() {
+    if (this.y >= 340) {
+      this.up();
+    }
+    if (this.isOver) {
+      this.velocity = 0;
+      this.gravity = 1;
+    }
+
     this.velocity += this.gravity;
     this.y += this.velocity;
 

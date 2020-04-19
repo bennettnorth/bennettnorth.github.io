@@ -35,5 +35,8 @@
   },
   "eslintIgnore": [
     "libraries/*"
-  ]
+  ],
+  "dependencies": {
+    "browser-sync": "^2.26.7"
+  }
 }
