@@ -218,7 +218,7 @@ function draw() {
       textAlign(CENTER, TOP-CENTER);
       text(question, width / 2, (height / 2) - 150);
       textAlign(LEFT, BASELINE);
-
+      console.log('problem is not here:221');
       textSize(25);
       var pipeCount = 3-count;
       text('Pipes left: ' + pipeCount.toString(), width / 2, height - 550);
@@ -365,21 +365,21 @@ function createQuestion() {
       correctAnswer=x-y;
       break;
     case 2:
-      correctAnswer=x*y;
-      while (x==0 || y==0) {
-        x = Math.floor(Math.random() * Math.floor(10))
+      while (y==0) {
         y = Math.floor(Math.random() * Math.floor(10))
       }
+      while (x==0) {
+        x = Math.floor(Math.random() * Math.floor(10))
+      }
+      correctAnswer=x*y;
       break;
     case 3:
       while (y==0 || x%y!=0) {
         y = Math.floor(Math.random() * Math.floor(10));
-      }
-      while (x==0) {
         x = Math.floor(Math.random() * Math.floor(10));
       }
-      if (x==0) {
-        zeroCarch = true;
+      while (x%y!=0) {
+        y = Math.floor(Math.random() * Math.floor(10));
       }
       correctAnswer=x/y;
       break;
@@ -422,6 +422,8 @@ function createQuestion() {
       break;
   }
 
+  console.log('problem is not here:424');
+
   var return_string = x.toString().concat(' ', strings_of_equations[z]);
   return_string = return_string.concat(' ', y.toString());
 
@@ -444,6 +446,8 @@ function shuffle(array) {
     array[currentIndex] = array[randomIndex];
     array[randomIndex] = temporaryValue;
   }
+
+  console.log('problem is not here:449');
 
   return array;
 }
