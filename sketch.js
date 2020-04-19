@@ -41,6 +41,12 @@ var answer_choice_B;
 var answer_choice_C;
 var answer_choice_D;
 
+var addition_only = false;
+var subtraction_only = false;
+var division_only = false;
+var multiplication_only = false; 
+
+
 var question;
 var new_question = false;
 
@@ -61,21 +67,36 @@ function setup() {
   reset();
 
   start_game_button = createButton('Start Game');
-  start_game_button.position(width/2,height/2);
+  start_game_button.position((width/2)-40,height/2);
+  start_game_button.style('background-color', '#4CAF65');
+  start_game_button.style('padding: 10px 27px');
+  start_game_button.style('border-radius: 25px 25px 25px 25px');
 
   settings_button = createButton('Settings');
-  settings_button.position(width/2,(height/2)+25);
+  settings_button.position((width/2)-30,(height/2)+50);
+  settings_button.style('background-color', '#4CAF65');
+  settings_button.style('padding: 10px 27px');
+  settings_button.style('border-radius: 25px 25px 25px 25px');
 
   restart_button = createButton('Restart');
-  restart_button.position(width/2, (height/2)+100);
+  restart_button.position((width/2)-20, (height/2)+100);
+  restart_button.style('background-color', '#4CAF65');
+  restart_button.style('padding: 5px 14px');
+  restart_button.style('border-radius: 25px 25px 25px 25px');
   restart_button.hide();
 
   leave_button = createButton('Main Menu');
-  leave_button.position(width/2, (height/2)+120);
+  leave_button.position((width/2)-31.5, (height/2)+140);
+  leave_button.style('background-color', '#4CAF65');
+  leave_button.style('padding: 5px 14px');
+  leave_button.style('border-radius: 25px 25px 25px 25px');
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
   return_to_main.position(600, 500);
+  return_to_main.style('background-color', '#4CAF65');
+  return_to_main.style('padding: 5px 14px');
+  return_to_main.style('border-radius: 25px 25px 25px 25px');
   return_to_main.hide();
 
   answer_A = createButton("A");
@@ -105,6 +126,24 @@ function setup() {
 
   answer_choice_D = createP(' ');
   answer_choice_D.position(785, 570);
+
+  // Adding Difficulty Buttons
+  addition_button = createButton('Addition Only');
+  addition_button.position(200, 300);
+  addition_button.hide();
+
+  subtraction_button = createButton('Subtraction Only');
+  subtraction_button.position(200, 400);
+  subtraction_button.hide();
+
+  division_button = createButton('Division Only');
+  division_button.position(200, 350);
+  division_button.hide();
+
+  multiplication_button = createButton('Multiplication Only');
+  multiplication_button.position(200, 250);
+  multiplication_button.hide();
+
 
   answer_A.mousePressed(() => {
     if (correctAnswerChoice == 0) {
@@ -148,6 +187,10 @@ function setup() {
     goToSettings=true;
     start_game_button.hide();
     settings_button.hide();
+    addition_button.show();
+    subtraction_button.show();
+    division_button.show();
+    multiplication_button.show();
     return_to_main.show();
   });
 
@@ -174,6 +217,75 @@ function setup() {
     return_to_main.hide();
   });
 
+  // Math Button Functionality
+    //Addition 
+
+   // Addition Start the Game
+   addition_button.mousePressed(() => { // home menu start
+    subtraction_only = false;
+    division_only = false;
+    multiplication_only = false;
+
+    addition_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+
+   // Subtraction Start the Game
+   subtraction_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    division_only = false;
+    multiplication_only = false;
+
+    subtraction_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+   // Division Start the Game
+   division_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    subtraction_only = false;
+    multiplication_only = false;
+
+    division_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+
+    // Multiplication Start the Game
+    multiplication_button.mousePressed(() => { // home menu start
+      addition_only = false;
+      subtraction_only = false;
+      division_only = false;
+  
+      multiplication_only = true;
+      startTheGame=true;
+      start_game_button.hide();
+      settings_button.hide();
+      addition_button.hide();
+      subtraction_button.hide();
+      division_button.hide();
+      multiplication_button.hide();
+      return_to_main.hide();
+    });
 
 }
 
@@ -199,7 +311,6 @@ function draw() {
     textSize(64);
     textAlign(CENTER, TOP-CENTER);
     text('Mathy Bird', width / 2, (height / 2) - 150);
-    //text('Mathy Bird', 30, 100);
     textAlign(LEFT, BASELINE);
   }
 
@@ -218,7 +329,6 @@ function draw() {
       textAlign(CENTER, TOP-CENTER);
       text(question, width / 2, (height / 2) - 150);
       textAlign(LEFT, BASELINE);
-      console.log('problem is not here:221');
       textSize(25);
       var pipeCount = 3-count;
       text('Pipes left: ' + pipeCount.toString(), width / 2, height - 550);
@@ -344,11 +454,29 @@ function reset() {
 
 function createQuestion() {
   let strings_of_equations = ['+', '-', 'x', '/']; // add filter
+  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
+
+  if(addition_only == true ){
+     z = 0;
+  } 
+  if(subtraction_only == true){
+     z = 1;
+  }
+  if(division_only == true){
+     z = 3;
+  }
+  if(multiplication_only == true){
+     z =2;
+  } 
+  
+  
+  
+  //let strings_of_equations = ['+', '-', 'x', '/']; // add filter
 
   //generate random range_of_numbers
   let x = Math.floor(Math.random() * Math.floor(10)) // change 10 to a factor variable
   let y = Math.floor(Math.random() * Math.floor(10))
-  let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
+  //let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
 
   while (x == 0 && y == 0) {
     x = Math.floor(Math.random() * Math.floor(10))
@@ -369,6 +497,9 @@ function createQuestion() {
       break;
     case 2:
       correctAnswer=x*y;
+      if (x==0 || y==0) {
+        zeroCatch = true;
+      }
       break;
     case 3:
       while (x%y!=0) {
@@ -417,8 +548,6 @@ function createQuestion() {
       break;
   }
 
-  console.log('problem is not here:424');
-
   var return_string = x.toString().concat(' ', strings_of_equations[z]);
   return_string = return_string.concat(' ', y.toString());
 
@@ -442,10 +571,10 @@ function shuffleThis(array) {
     array[randomIndex] = temporaryValue;
   }
 
-  console.log('problem is not here:449');
-
   return array;
 }
+
+
 
 
 
