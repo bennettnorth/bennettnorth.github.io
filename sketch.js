@@ -189,13 +189,6 @@ function setup() {
     return_to_main.hide();
   });
 
-  // starWarsButton.mousePressed( () => {
-  //   pipeBodySprite = loadImage('graphics/pipe_body.png');
-  //   pipePeakSprite = loadImage('graphics/pipe_body.png');
-  //   birdSprite = loadImage('graphics/og_bird.png');
-  //   bgImg = loadImage('graphics/background.png');
-  // });
-
 
 }
 
@@ -239,7 +232,6 @@ function draw() {
       textAlign(CENTER, TOP-CENTER);
       text(question, width / 2, (height / 2) - 150);
       textAlign(LEFT, BASELINE);
-
       textSize(25);
       var pipeCount = 3-count;
       text('Pipes left: ' + pipeCount.toString(), width / 2, height - 550);
