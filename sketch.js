@@ -355,6 +355,11 @@ function createQuestion() {
     y = Math.floor(Math.random() * Math.floor(10))
   }
 
+  while (x == 0 || y == 0) {
+    x = Math.floor(Math.random() * Math.floor(10))
+    y = Math.floor(Math.random() * Math.floor(10))
+  }
+
   switch(z) {
     case 0:
       correctAnswer=x+y;
@@ -363,19 +368,9 @@ function createQuestion() {
       correctAnswer=x-y;
       break;
     case 2:
-      while (y==0) {
-        y = Math.floor(Math.random() * Math.floor(10))
-      }
-      while (x==0) {
-        x = Math.floor(Math.random() * Math.floor(10))
-      }
       correctAnswer=x*y;
       break;
     case 3:
-      while (y==0 || x==0) {
-        y = Math.floor(Math.random() * Math.floor(10));
-        x = Math.floor(Math.random() * Math.floor(10));
-      }
       while (x%y!=0) {
         y = Math.floor(Math.random() * Math.floor(10));
       }
@@ -393,6 +388,7 @@ function createQuestion() {
     danger++;
     if (danger>5) {
       console.log('danger danger');
+      randomChoice = correctAnswer+x+y+2;
       break;
     } 
   }
