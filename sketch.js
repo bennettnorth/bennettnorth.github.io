@@ -98,34 +98,43 @@ function setup() {
   return_to_main.style('padding: 5px 14px');
   return_to_main.style('border-radius: 25px 25px 25px 25px');
   return_to_main.hide();
-
-  answer_A = createButton("A");
-  answer_A.position(15, 32);
+  
+  answer_A = createButton('A');
+  answer_A.position(40, 40);
+  answer_A.style('background-color', '#4CAF65');
+  answer_A.style('padding: 25px 30px');
+  answer_A.style('border-radius: 25px 25px 25px 25px');
+  answer_A.style('font-size: 40px');
+  answer_A.style('cursor: pointer');
   answer_A.hide();
 
-  answer_choice_A = createP(' ');
-  answer_choice_A.position(15, 35);
-
   answer_B = createButton("B");
-  answer_B.position(785, 32);
+  answer_B.position(700, 40);
+  answer_B.style('background-color', '#4CAF65');
+  answer_B.style('padding: 25px 30px');
+  answer_B.style('border-radius: 25px 25px 25px 25px');
+  answer_B.style('font-size: 40px');
+  answer_B.style('cursor: pointer');
   answer_B.hide();
 
-  answer_choice_B = createP(' ');
-  answer_choice_B.position(785, 35);
-
   answer_C = createButton("C");
-  answer_C.position(15, 560);
+  answer_C.style('background-color', '#4CAF65');
+  answer_C.style('padding: 25px 30px');
+  answer_C.style('border-radius: 25px 25px 25px 25px');
+  answer_C.position(40, 500);
+  answer_C.style('font-size: 40px');
+  answer_C.style('cursor: pointer');
   answer_C.hide();
 
-  answer_choice_C = createP(' ');
-  answer_choice_C.position(15, 570);
-
   answer_D = createButton("D");
-  answer_D.position(785, 560);
+  answer_D.style('background-color', '#4CAF65');
+  answer_D.style('padding: 25px 30px');
+  answer_D.style('border-radius: 25px 25px 25px 25px');
+  answer_D.position(700, 500);
+  answer_D.style('font-size: 40px');
+  answer_D.style('cursor: pointer');
   answer_D.hide();
 
-  answer_choice_D = createP(' ');
-  answer_choice_D.position(785, 570);
 
   // Adding Difficulty Buttons
   addition_button = createButton('Addition Only');
@@ -395,10 +404,6 @@ function draw() {
     // prevTouched = touched;
   } else if (goToSettings) {
       // this is where we can add costomization
-      textSize(64);
-      textAlign(CENTER, CENTER);
-      text('COMING SOON', width / 2, height / 2);
-      textAlign(LEFT, BASELINE);
   }
 
 }
@@ -528,10 +533,10 @@ function createQuestion() {
 
   let shuffled = shuffleThis(choices);
 
-  answer_choice_A.html(shuffled[0]);
-  answer_choice_B.html(shuffled[1]);
-  answer_choice_C.html(shuffled[2]);
-  answer_choice_D.html(shuffled[3]);
+  answer_A.html(shuffled[0]);
+  answer_B.html(shuffled[1]);
+  answer_C.html(shuffled[2]);
+  answer_D.html(shuffled[3]);
 
   switch (shuffled.findIndex(element => element==correctAnswer)) {
     case 0:
