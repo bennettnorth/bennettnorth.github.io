@@ -174,13 +174,6 @@ function setup() {
     return_to_main.hide();
   });
 
-  // starWarsButton.mousePressed( () => {
-  //   pipeBodySprite = loadImage('graphics/pipe_body.png');
-  //   pipePeakSprite = loadImage('graphics/pipe_body.png');
-  //   birdSprite = loadImage('graphics/og_bird.png');
-  //   bgImg = loadImage('graphics/background.png');
-  // });
-
 
 }
 
@@ -373,8 +366,9 @@ function createQuestion() {
       break;
     case 2:
       correctAnswer=x*y;
-      if (x==0 || y==0) {
-        zeroCatch = true;
+      while (x==0 || y==0) {
+        x = Math.floor(Math.random() * Math.floor(10))
+        y = Math.floor(Math.random() * Math.floor(10))
       }
       break;
     case 3:
