@@ -224,6 +224,12 @@ function setup() {
     start_game_button.show();
     settings_button.show();
     return_to_main.hide();
+
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
   });
 
   // Math Button Functionality
@@ -404,6 +410,10 @@ function draw() {
     // prevTouched = touched;
   } else if (goToSettings) {
       // this is where we can add costomization
+      // textSize(64);
+      // textAlign(CENTER, CENTER);
+      // text('COMING SOON', width / 2, height / 2);
+      // textAlign(LEFT, BASELINE);
   }
 
 }
