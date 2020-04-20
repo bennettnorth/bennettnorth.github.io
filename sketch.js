@@ -112,6 +112,10 @@ function setup() {
   answer_A.style('cursor: pointer');
   answer_A.hide();
 
+  hint_a = createP('[Up Arrow]');
+  hint_a.position(50, 125);
+  hint_a.hide();
+
   answer_B = createButton("B");
   answer_B.position(680, 40);
   answer_B.style('background-color', '#4CAF65');
@@ -120,6 +124,10 @@ function setup() {
   answer_B.style('font-size: 40px');
   answer_B.style('cursor: pointer');
   answer_B.hide();
+
+  hint_b = createP('[Right Arrow]');
+  hint_b.position(690, 125);
+  hint_b.hide();
 
   answer_C = createButton("C");
   answer_C.style('background-color', '#4CAF65');
@@ -130,6 +138,10 @@ function setup() {
   answer_C.style('cursor: pointer');
   answer_C.hide();
 
+  hint_c = createP('[Left Arrow]');
+  hint_c.position(50, 565);
+  hint_c.hide();
+
   answer_D = createButton("D");
   answer_D.style('background-color', '#4CAF65');
   answer_D.style('padding: 25px 30px');
@@ -138,6 +150,10 @@ function setup() {
   answer_D.style('font-size: 40px');
   answer_D.style('cursor: pointer');
   answer_D.hide();
+
+  hint_d = createP('[Down Arrow]');
+  hint_d.position(690, 565);
+  hint_d.hide();
 
 
   // Adding Difficulty Buttons
@@ -508,6 +524,17 @@ function draw() {
     if (gameFrameCount==0) {
       question = createQuestion();
     }
+    if (gameFrameCount<(420*2)) {
+        hint_a.show();
+        hint_b.show();
+        hint_c.show();
+        hint_d.show();
+    } else {
+        hint_a.hide();
+        hint_b.hide();
+        hint_c.hide();
+        hint_d.hide();
+    }
     answer_A.show();
     answer_B.show();
     answer_C.show();
@@ -661,10 +688,10 @@ function gameover() {
   answer_C.hide();
   answer_D.hide();
 
-  answer_choice_A.html(' ');
-  answer_choice_B.html(' ');
-  answer_choice_C.html(' ');
-  answer_choice_D.html(' ');
+  //answer_choice_A.html(' ');
+  //answer_choice_B.html(' ');
+  //answer_choice_C.html(' ');
+  //answer_choice_D.html(' ');
 
   noLoop();
 }
@@ -740,7 +767,6 @@ function createQuestion() {
       break;
   }
 
-  console.log('maybe we fixed it');
 
   let danger = 0
   
@@ -788,7 +814,7 @@ function createQuestion() {
 // stolen from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffleThis(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
-  console.log('problem is not here:436');
+
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
 
@@ -805,40 +831,7 @@ function shuffleThis(array) {
   return array;
 }
 
-function pressA() {
-  if (correctAnswerChoice == 0) {
-    userAnswer = true;
-  } else {
-    userAnswer = false;
-  }
-}
 
-function pressB() {
-  if (correctAnswerChoice == 1) {
-    userAnswer = true;
-  } else {
-    userAnswer = false;
-  }
-}
-
-function pressC() {
-  if (correctAnswerChoice == 2) {
-    userAnswer = true;
-  } else {
-    userAnswer = false;
-  }
-}
-
-function pressD() {
-  if (correctAnswerChoice == 3) {
-    userAnswer = true;
-  } else {
-    userAnswer = false;
-  }
-}
-
-
-// unused code from og code
 function keyPressed() {
   // if (key === ' ') {
   //   //bird.up();
@@ -846,17 +839,29 @@ function keyPressed() {
   //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   // }
   if (keyCode == UP_ARROW) {
-      pressA();
-      console.log('clicked a');
+    if (correctAnswerChoice == 0) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
   } else if (keyCode == RIGHT_ARROW) {
-      pressB();
-      console.log('clicked b');
+    if (correctAnswerChoice == 1) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
   } else if (keyCode == LEFT_ARROW) {
-      pressC();
-      console.log('clicked c');
+    if (correctAnswerChoice == 2) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
   } else if (keyCode == DOWN_ARROW) {
-      pressD();
-      console.log('clicked d')
+    if (correctAnswerChoice == 3) {
+      userAnswer = true;
+    } else {
+      userAnswer = false;
+    }
   }
 
 }
