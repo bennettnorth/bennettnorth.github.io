@@ -75,18 +75,21 @@ function setup() {
   start_game_button.style('background-color', '#4CAF65');
   start_game_button.style('padding: 10px 27px');
   start_game_button.style('border-radius: 25px 25px 25px 25px');
+  start_game_button.style('border: none');
 
   settings_button = createButton('Settings');
   settings_button.position((width/2)-30,(height/2)+50);
   settings_button.style('background-color', '#4CAF65');
   settings_button.style('padding: 10px 27px');
   settings_button.style('border-radius: 25px 25px 25px 25px');
+  settings_button.style('border: none');
 
   restart_button = createButton('Restart');
   restart_button.position((width/2)-20, (height/2)+100);
   restart_button.style('background-color', '#4CAF65');
   restart_button.style('padding: 5px 14px');
   restart_button.style('border-radius: 25px 25px 25px 25px');
+  restart_button.style('border: none');
   restart_button.hide();
 
   leave_button = createButton('Main Menu');
@@ -94,6 +97,7 @@ function setup() {
   leave_button.style('background-color', '#4CAF65');
   leave_button.style('padding: 5px 14px');
   leave_button.style('border-radius: 25px 25px 25px 25px');
+  leave_button.style('border: none');
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
@@ -101,15 +105,17 @@ function setup() {
   return_to_main.style('background-color', '#4CAF65');
   return_to_main.style('padding: 5px 14px');
   return_to_main.style('border-radius: 25px 25px 25px 25px');
+  return_to_main.style('border: none');
   return_to_main.hide();
   
   answer_A = createButton("A");
-  answer_A.position(40, 40);
+  answer_A.position(40, 20);
   answer_A.style('background-color', '#4CAF65');
   answer_A.style('padding: 25px 30px');
   answer_A.style('border-radius: 25px 25px 25px 25px');
   answer_A.style('font-size: 40px');
   answer_A.style('cursor: pointer');
+  answer_A.style('border: none');
   answer_A.hide();
 
   hint_a = createP('[Escape]');
@@ -117,12 +123,13 @@ function setup() {
   hint_a.hide();
 
   answer_B = createButton("B");
-  answer_B.position(680, 40);
+  answer_B.position(680, 20);
   answer_B.style('background-color', '#4CAF65');
   answer_B.style('padding: 25px 30px');
   answer_B.style('border-radius: 25px 25px 25px 25px');
   answer_B.style('font-size: 40px');
   answer_B.style('cursor: pointer');
+  answer_B.style('border: none');
   answer_B.hide();
 
   hint_b = createP('[Backspace]');
@@ -133,9 +140,10 @@ function setup() {
   answer_C.style('background-color', '#4CAF65');
   answer_C.style('padding: 25px 30px');
   answer_C.style('border-radius: 25px 25px 25px 25px');
-  answer_C.position(40, 480);
+  answer_C.position(40, 500);
   answer_C.style('font-size: 40px');
   answer_C.style('cursor: pointer');
+  answer_C.style('border: none');
   answer_C.hide();
 
   hint_c = createP('[Shift]');
@@ -146,9 +154,10 @@ function setup() {
   answer_D.style('background-color', '#4CAF65');
   answer_D.style('padding: 25px 30px');
   answer_D.style('border-radius: 25px 25px 25px 25px');
-  answer_D.position(680, 480);
+  answer_D.position(680, 500);
   answer_D.style('font-size: 40px');
   answer_D.style('cursor: pointer');
+  answer_D.style('border: none');
   answer_D.hide();
 
   hint_d = createP('[Enter]');
@@ -163,6 +172,7 @@ function setup() {
   addition_button.style('padding: 15px 20px');
   addition_button.style('border-radius: 25px 25px 25px 25px');
   addition_button.style('cursor: pointer');
+  addition_button.style('border: none');
   addition_button.hide();
 
   subtraction_button = createButton('Subtraction Only');
@@ -171,6 +181,7 @@ function setup() {
   subtraction_button.style('padding: 15px 20px');
   subtraction_button.style('border-radius: 25px 25px 25px 25px');
   subtraction_button.style('cursor: pointer');
+  subtraction_button.style('border: none');
   subtraction_button.hide();
 
   division_button = createButton('Division Only');
@@ -179,6 +190,7 @@ function setup() {
   division_button.style('padding: 15px 20px');
   division_button.style('border-radius: 25px 25px 25px 25px');
   division_button.style('cursor: pointer');
+  division_button.style('border: none');
   division_button.hide();
 
   multiplication_button = createButton('Multiplication Only');
@@ -187,6 +199,7 @@ function setup() {
   multiplication_button.style('padding: 15px 20px');
   multiplication_button.style('border-radius: 25px 25px 25px 25px');
   multiplication_button.style('cursor: pointer');
+  multiplication_button.style('border: none');
   multiplication_button.hide();
 
   starWars_button = createButton("Star Wars");
@@ -573,16 +586,6 @@ function draw() {
     //   bgImg = loadImage('graphics/blueSkyBackground.png');
     // }
 
-    if (!isOver) {
-      textSize(64);
-      textAlign(CENTER, TOP-CENTER);
-      text(question, width / 2, (height / 2) - 150);
-      textAlign(LEFT, BASELINE);
-      textSize(25);
-      var pipeCount = 3-count;
-      text('Pipes left: ' + pipeCount.toString(), width / 2, height - 550);
-    }
-
     gameFrameCount++;
     for (var i = pipes.length - 1; i >= 0; i--) {
       pipes[i].update();
@@ -626,6 +629,18 @@ function draw() {
       }
     }
 
+    if (!isOver) {
+      fill('#ffffff');
+      rect(200, 20, 395, 120, 20);
+
+      fill('#000000');
+      textSize(64);
+      text(question, width / 2, (height / 2) - 190);
+      textSize(25);
+      var pipeCount = 3-count;
+      text('Pipes left: ' + pipeCount.toString(), (width/2), height - 555);
+    }
+
     showScores();
 
     // touches is an list that contains the positions of all
@@ -663,8 +678,9 @@ function draw() {
 
 function showScores() {
   textSize(32);
-  text('score: ' + score, width/2, height-50);
-  text('record: ' + maxScore, width/2, height-20);
+  textAlign(CENTER, CENTER)
+  text('Score: ' + score, width/2, height-50);
+  text('Record: ' + maxScore, width/2, height-20);
 }
 
 function gameover() {
