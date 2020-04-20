@@ -36,10 +36,7 @@ var userAnswer = false;
 
 var correctAnswerChoice;
 
-var answer_choice_A;
-var answer_choice_B;
-var answer_choice_C;
-var answer_choice_D;
+var timeLimit = 5;
 
 var addition_only = false;
 var subtraction_only = false;
@@ -118,7 +115,7 @@ function setup() {
   answer_A.style('border: none');
   answer_A.hide();
 
-  hint_a = createP('[Up Arrow]');
+  hint_a = createP('[Escape]');
   hint_a.position(50, 125);
   hint_a.hide();
 
@@ -132,7 +129,7 @@ function setup() {
   answer_B.style('border: none');
   answer_B.hide();
 
-  hint_b = createP('[Right Arrow]');
+  hint_b = createP('[Backspace]');
   hint_b.position(690, 125);
   hint_b.hide();
 
@@ -146,7 +143,7 @@ function setup() {
   answer_C.style('border: none');
   answer_C.hide();
 
-  hint_c = createP('[Left Arrow]');
+  hint_c = createP('[Shift]');
   hint_c.position(50, 565);
   hint_c.hide();
 
@@ -160,7 +157,7 @@ function setup() {
   answer_D.style('border: none');
   answer_D.hide();
 
-  hint_d = createP('[Down Arrow]');
+  hint_d = createP('[Enter]');
   hint_d.position(690, 565);
   hint_d.hide();
 
@@ -202,6 +199,18 @@ function setup() {
   multiplication_button.style('border: none');
   multiplication_button.hide();
 
+  // timeLimitText = createP('Select Speed of Game');
+  // timeLimitButton.hide();
+
+  easyButton = createButton('Easy: 1 question per 10 pipes');
+  easyButton.hide();
+  
+  easyButton.mousePressed(() => {
+    timeLimit = 10;
+  });
+
+
+  // customization buttons
   starWars_button = createButton("Star Wars");
   starWars_button. position(75, 200);
   starWars_button.style('color: white')
@@ -414,27 +423,22 @@ function setup() {
     return_to_main.hide();
   });
 
-  // starWars_button.mousePressed(() => { // start game with star wars theme
-  //   star_wars = true;
+  starWars_button.mousePressed(() => { // start game with star wars theme
+    
+    pipeBodySprite = loadImage('graphics/lightsaber.png');
+    pipePeakSprite = loadImage('graphics/lightsaber.png');
+    birdSprite = loadImage('graphics/babyYoda.png');
+    //bgImg = loadImage('graphics/starWarsBackg.png');
+    
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
 
-  //   addition_only = false;
-  //   subtraction_only = false;
-  //   multiplication_button = false;
-  //   division_only = false;
-  
-  //   startTheGame=true;
-  //   goToSettings = false;
-
-  //   start_game_button.hide();
-  //   settings_button.hide();
-
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  // });
+    return_to_main.hide();
+    startTheGame=true;
+    goToSettings = false;
+  });
 
   // moana_button.mousePressed(() => { // moana themed game
   //   moana = true;
@@ -542,7 +546,7 @@ function draw() {
         hint_b.show();
         hint_c.show();
         hint_d.show();
-    } else {
+    } else if (gameFrameCount>(420*2)) {
         hint_a.hide();
         hint_b.hide();
         hint_c.hide();
@@ -558,12 +562,6 @@ function draw() {
     southPark_button.hide();
     fighterJet_button.hide();
 
-    // if(star_wars) {
-    //   pipeBodySprite = loadImage('graphics/babyYoda.png');
-    //   pipePeakSprite = loadImage('graphics/lightsaber.png');
-    //   birdSprite = loadImage('graphics/lightsaber.png');
-    //   bgImg = loadImage('graphics/starWarsBackground.jpg');
-    // }
 
     // if(moana) {
     //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
@@ -618,7 +616,7 @@ function draw() {
 
 
   // after every 3 pipes, check if the user's answer was correct
-    if (count==3) {
+    if (count==3) { // change to timelimit var
       if (userAnswer) {
         count=0;
         userAnswer=false;
@@ -637,7 +635,7 @@ function draw() {
       textSize(64);
       text(question, width / 2, (height / 2) - 190);
       textSize(25);
-      var pipeCount = 3-count;
+      var pipeCount = 3-count; // change 3 to timlimit var
       text('Pipes left: ' + pipeCount.toString(), (width/2), height - 555);
     }
 
@@ -708,6 +706,11 @@ function gameover() {
   //answer_choice_B.html(' ');
   //answer_choice_C.html(' ');
   //answer_choice_D.html(' ');
+
+  hint_a.hide();
+  hint_b.hide();
+  hint_c.hide();
+  hint_d.hide();
 
   noLoop();
 }
@@ -854,25 +857,25 @@ function keyPressed() {
   //   gameover()
   //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   // }
-  if (keyCode == UP_ARROW) {
+  if (keyCode == ESCAPE) {
     if (correctAnswerChoice == 0) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == RIGHT_ARROW) {
+  } else if (keyCode == BACKSPACE) {
     if (correctAnswerChoice == 1) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == LEFT_ARROW) {
+  } else if (keyCode == SHIFT) {
     if (correctAnswerChoice == 2) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == DOWN_ARROW) {
+  } else if (keyCode == ENTER) {
     if (correctAnswerChoice == 3) {
       userAnswer = true;
     } else {
