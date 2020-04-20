@@ -419,7 +419,7 @@ function setup() {
     pipeBodySprite = loadImage('graphics/lightsaber.png');
     pipePeakSprite = loadImage('graphics/lightsaber.png');
     birdSprite = loadImage('graphics/babyYoda.png');
-    //bgImg = loadImage('graphics/starWarsBackground.jpg');
+    //bgImg = loadImage('graphics/starWarsBackg.png');
     
     addition_button.hide();
     subtraction_button.hide();
