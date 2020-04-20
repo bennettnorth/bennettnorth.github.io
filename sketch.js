@@ -112,7 +112,7 @@ function setup() {
   answer_A.style('cursor: pointer');
   answer_A.hide();
 
-  hint_a = createP('[Up Arrow]');
+  hint_a = createP('[Escape]');
   hint_a.position(50, 125);
   hint_a.hide();
 
@@ -125,7 +125,7 @@ function setup() {
   answer_B.style('cursor: pointer');
   answer_B.hide();
 
-  hint_b = createP('[Right Arrow]');
+  hint_b = createP('[Backspace]');
   hint_b.position(690, 125);
   hint_b.hide();
 
@@ -138,7 +138,7 @@ function setup() {
   answer_C.style('cursor: pointer');
   answer_C.hide();
 
-  hint_c = createP('[Left Arrow]');
+  hint_c = createP('[Shift]');
   hint_c.position(50, 565);
   hint_c.hide();
 
@@ -151,7 +151,7 @@ function setup() {
   answer_D.style('cursor: pointer');
   answer_D.hide();
 
-  hint_d = createP('[Down Arrow]');
+  hint_d = createP('[Enter]');
   hint_d.position(690, 565);
   hint_d.hide();
 
@@ -529,7 +529,7 @@ function draw() {
         hint_b.show();
         hint_c.show();
         hint_d.show();
-    } else {
+    } else if (gameFrameCount>(420*2)) {
         hint_a.hide();
         hint_b.hide();
         hint_c.hide();
@@ -693,6 +693,11 @@ function gameover() {
   //answer_choice_C.html(' ');
   //answer_choice_D.html(' ');
 
+  hint_a.hide();
+  hint_b.hide();
+  hint_c.hide();
+  hint_d.hide();
+
   noLoop();
 }
 
@@ -838,25 +843,25 @@ function keyPressed() {
   //   gameover()
   //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   // }
-  if (keyCode == UP_ARROW) {
+  if (keyCode == ESCAPE) {
     if (correctAnswerChoice == 0) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == RIGHT_ARROW) {
+  } else if (keyCode == BACKSPACE) {
     if (correctAnswerChoice == 1) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == LEFT_ARROW) {
+  } else if (keyCode == SHIFT) {
     if (correctAnswerChoice == 2) {
       userAnswer = true;
     } else {
       userAnswer = false;
     }
-  } else if (keyCode == DOWN_ARROW) {
+  } else if (keyCode == ENTER) {
     if (correctAnswerChoice == 3) {
       userAnswer = true;
     } else {
