@@ -414,27 +414,22 @@ function setup() {
     return_to_main.hide();
   });
 
-  // starWars_button.mousePressed(() => { // start game with star wars theme
-  //   star_wars = true;
+  starWars_button.mousePressed(() => { // start game with star wars theme
+    
+    pipeBodySprite = loadImage('graphics/lightsaber.png');
+    pipePeakSprite = loadImage('graphics/lightsaber.png');
+    birdSprite = loadImage('graphics/babyYoda.png');
+    //bgImg = loadImage('graphics/starWarsBackground.jpg');
+    
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
 
-  //   addition_only = false;
-  //   subtraction_only = false;
-  //   multiplication_button = false;
-  //   division_only = false;
-  
-  //   startTheGame=true;
-  //   goToSettings = false;
-
-  //   start_game_button.hide();
-  //   settings_button.hide();
-
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  // });
+    return_to_main.hide();
+    startTheGame=true;
+    goToSettings = false;
+  });
 
   // moana_button.mousePressed(() => { // moana themed game
   //   moana = true;
@@ -558,12 +553,6 @@ function draw() {
     southPark_button.hide();
     fighterJet_button.hide();
 
-    // if(star_wars) {
-    //   pipeBodySprite = loadImage('graphics/babyYoda.png');
-    //   pipePeakSprite = loadImage('graphics/lightsaber.png');
-    //   birdSprite = loadImage('graphics/lightsaber.png');
-    //   bgImg = loadImage('graphics/starWarsBackground.jpg');
-    // }
 
     // if(moana) {
     //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
