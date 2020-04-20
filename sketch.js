@@ -498,6 +498,11 @@ function draw() {
     textAlign(CENTER);
     text('Mathy Bird', width / 2, height / 5.5);
   }
+  if (!startTheGame && !goToSettings) {
+    textSize(12);
+    textAlign(CENTER);
+    text('How to Play: \n Select the correct answer before your time runs out! \n choose with either your mouse or with the arrow keys \n Most importantly, Have Fun!', width /2, height -175);
+  }
 
   if (startTheGame) {
     if (gameFrameCount==0) {
@@ -632,7 +637,7 @@ function draw() {
 function showScores() {
   textSize(32);
   text('score: ' + score, width/2, height-50);
-  text('record: ' + maxScore, width/2, height-30);
+  text('record: ' + maxScore, width/2, height-20);
 }
 
 function gameover() {
@@ -800,19 +805,61 @@ function shuffleThis(array) {
   return array;
 }
 
+function pressA() {
+  if (correctAnswerChoice == 0) {
+    userAnswer = true;
+  } else {
+    userAnswer = false;
+  }
+}
 
+function pressB() {
+  if (correctAnswerChoice == 1) {
+    userAnswer = true;
+  } else {
+    userAnswer = false;
+  }
+}
 
+function pressC() {
+  if (correctAnswerChoice == 2) {
+    userAnswer = true;
+  } else {
+    userAnswer = false;
+  }
+}
+
+function pressD() {
+  if (correctAnswerChoice == 3) {
+    userAnswer = true;
+  } else {
+    userAnswer = false;
+  }
+}
 
 
 // unused code from og code
-// function keyPressed() {
-//   if (key === ' ') {
-//     //bird.up();
-//     gameover()
-//     if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
-//   }
-//
-// }
+function keyPressed() {
+  // if (key === ' ') {
+  //   //bird.up();
+  //   gameover()
+  //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
+  // }
+  if (keyCode == UP_ARROW) {
+      pressA();
+      console.log('clicked a');
+  } else if (keyCode == RIGHT_ARROW) {
+      pressB();
+      console.log('clicked b');
+  } else if (keyCode == LEFT_ARROW) {
+      pressC();
+      console.log('clicked c');
+  } else if (keyCode == DOWN_ARROW) {
+      pressD();
+      console.log('clicked d')
+  }
+
+}
 //
 // function touchStarted() {
 //   if (isOver) reset();
