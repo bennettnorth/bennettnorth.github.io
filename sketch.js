@@ -98,7 +98,7 @@ function setup() {
   leave_button.hide();
 
   return_to_main = createButton('Return to Main Menu');
-  return_to_main.position(600, 500);
+  return_to_main.position(600, 575);
   return_to_main.style('background-color', '#4CAF65');
   return_to_main.style('padding: 5px 14px');
   return_to_main.style('border-radius: 25px 25px 25px 25px');
@@ -164,7 +164,7 @@ function setup() {
 
   // Adding Difficulty Buttons
   addition_button = createButton('Addition Only');
-  addition_button.position(50, 400);
+  addition_button.position(50, 350);
   addition_button.style('background-color', '#4CAF65');
   addition_button.style('padding: 15px 20px');
   addition_button.style('border-radius: 25px 25px 25px 25px');
@@ -173,7 +173,7 @@ function setup() {
   addition_button.hide();
 
   subtraction_button = createButton('Subtraction Only');
-  subtraction_button.position(225, 400);
+  subtraction_button.position(225, 350);
   subtraction_button.style('background-color', '#4CAF65');
   subtraction_button.style('padding: 15px 20px');
   subtraction_button.style('border-radius: 25px 25px 25px 25px');
@@ -182,7 +182,7 @@ function setup() {
   subtraction_button.hide();
 
   division_button = createButton('Division Only');
-  division_button.position(425, 400);
+  division_button.position(425, 350);
   division_button.style('background-color', '#4CAF65');
   division_button.style('padding: 15px 20px');
   division_button.style('border-radius: 25px 25px 25px 25px');
@@ -191,23 +191,13 @@ function setup() {
   division_button.hide();
 
   multiplication_button = createButton('Multiplication Only');
-  multiplication_button.position(600, 400);
+  multiplication_button.position(600, 350);
   multiplication_button.style('background-color', '#4CAF65');
   multiplication_button.style('padding: 15px 20px');
   multiplication_button.style('border-radius: 25px 25px 25px 25px');
   multiplication_button.style('cursor: pointer');
   multiplication_button.style('border: none');
   multiplication_button.hide();
-
-  // timeLimitText = createP('Select Speed of Game');
-  // timeLimitButton.hide();
-
-  easyButton = createButton('Easy: 1 question per 10 pipes');
-  easyButton.hide();
-  
-  easyButton.mousePressed(() => {
-    timeLimit = 10;
-  });
 
 
   // customization buttons
@@ -300,6 +290,8 @@ function setup() {
     moana_button.show();
     southPark_button.show();
     fighterJet_button.show();
+    
+    speedSlider.show();
 
     star_wars = false;
     moana = false;
@@ -343,6 +335,8 @@ function setup() {
     moana_button.hide();
     southPark_button.hide();
     fighterJet_button.hide();
+
+    speedSlider.hide();
   });
 
   // Math Button Functionality
@@ -365,6 +359,8 @@ function setup() {
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
+
+    speedSlider.hide();
   });
 
    // Subtraction Start the Game
@@ -384,6 +380,8 @@ function setup() {
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
+
+    speedSlider.hide();
   });
    // Division Start the Game
   division_button.mousePressed(() => { // home menu start
@@ -402,6 +400,8 @@ function setup() {
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
+
+    speedSlider.hide();
   });
 
     // Multiplication Start the Game
@@ -421,21 +421,16 @@ function setup() {
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
+
+    speedSlider.hide();
   });
 
   starWars_button.mousePressed(() => { // start game with star wars theme
-    birdSprite = loadImage('graphics/babyYoda.png'); 
+   
     pipeBodySprite = loadImage('graphics/lightsaber.png');
     pipePeakSprite = loadImage('graphics/lightsaber.png');
+    birdSprite = loadImage('graphics/babyYoda.png'); 
     
-    addition_button.hide();
-    subtraction_button.hide();
-    division_button.hide();
-    multiplication_button.hide();
-
-    return_to_main.hide();
-    startTheGame=true;
-    goToSettings = false;
   });
 
   // southPark_button.mousePressed(() => { // start game with star wars theme 
@@ -483,6 +478,13 @@ function setup() {
   //   goToSettings = false;
   // });
 
+  // setting slider for speed of game
+  speedSlider = createSlider(1, 10, 5, 1);
+  speedSlider.position((width / 2) / 3, (height / 1.50) + 75);
+  speedSlider.style('width', `${width*(2/3)}`);
+  //speedSlider.style('align', 'CENTER')
+  speedSlider.hide();
+
 }
 
 function draw() {
@@ -511,7 +513,7 @@ function draw() {
   if (!startTheGame && !goToSettings) {
     textSize(12);
     textAlign(CENTER);
-    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or the specified arrow keys. \n Most importantly, Have Fun!', width /2, height -175);
+    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or one of the specified keys: esc, shift, backspace & enter. \n Most importantly, Have Fun!', width /2, height -175);
   }
 
   if (startTheGame) {
@@ -538,28 +540,6 @@ function draw() {
     moana_button.hide();
     southPark_button.hide();
     fighterJet_button.hide();
-
-
-    // if(moana) {
-    //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
-    //   pipePeakSprite = loadImage('graphics/pipe_body.jpg');
-    //   birdSprite = loadImage('graphics/moana.jpg');
-    //   bgImg = loadImage('graphics/moanaBackgroung.jpg');
-    // }
-
-    // if(south_park) {
-    //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
-    //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
-    //   birdSprite = loadImage('graphics/cartman.png');
-    //   bgImg = loadImage('graphics/southParkBackground.png');
-    // }
-
-    // if(fighter_jet) {
-    //   pipeBodySprite = loadImage('graphics/skyscraper.png');
-    //   pipePeakSprite = loadImage('graphics/skyscraper.png');
-    //   birdSprite = loadImage('graphics/fighterJet.png');
-    //   bgImg = loadImage('graphics/blueSkyBackground.png');
-    // }
 
     gameFrameCount++;
     for (var i = pipes.length - 1; i >= 0; i--) {
@@ -593,7 +573,7 @@ function draw() {
 
 
   // after every 3 pipes, check if the user's answer was correct
-    if (count==3) { // change to timelimit var
+    if (count==speedSlider.value()) { // change to timelimit var
       if (userAnswer) {
         count=0;
         userAnswer=false;
@@ -612,7 +592,7 @@ function draw() {
       textSize(64);
       text(question, width / 2, (height / 2) - 190);
       textSize(25);
-      var pipeCount = 3-count; // change 3 to timlimit var
+      var pipeCount = speedSlider.value()-count; // change 3 to timlimit var
       text('Pipes left: ' + pipeCount.toString(), (width/2), height - 555);
     }
 
@@ -645,7 +625,12 @@ function draw() {
       
       textSize(35);
       textAlign(CENTER, CENTER);
-      text('Choose An Operation', width / 2, height / 1.7);
+      text('Choose An Operation', width / 2, height / 2);
+      textAlign(LEFT, BASELINE);
+
+      textSize(35);
+      textAlign(CENTER, CENTER);
+      text('Set Game Speed', width / 2, (height / 1.50) + 25);
       textAlign(LEFT, BASELINE);
   }
 
