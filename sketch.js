@@ -44,8 +44,9 @@ var answer_choice_D;
 var addition_only = false;
 var subtraction_only = false;
 var division_only = false;
-var multiplication_only = false; 
+var multiplication_only = false;
 
+var starWars_button = false;
 
 var question;
 var new_question = false;
@@ -99,7 +100,7 @@ function setup() {
   return_to_main.style('border-radius: 25px 25px 25px 25px');
   return_to_main.hide();
   
-  answer_A = createButton('A');
+  answer_A = createButton("A");
   answer_A.position(40, 40);
   answer_A.style('background-color', '#4CAF65');
   answer_A.style('padding: 25px 30px');
@@ -121,7 +122,7 @@ function setup() {
   answer_C.style('background-color', '#4CAF65');
   answer_C.style('padding: 25px 30px');
   answer_C.style('border-radius: 25px 25px 25px 25px');
-  answer_C.position(40, 500);
+  answer_C.position(40, 480);
   answer_C.style('font-size: 40px');
   answer_C.style('cursor: pointer');
   answer_C.hide();
@@ -130,7 +131,7 @@ function setup() {
   answer_D.style('background-color', '#4CAF65');
   answer_D.style('padding: 25px 30px');
   answer_D.style('border-radius: 25px 25px 25px 25px');
-  answer_D.position(700, 500);
+  answer_D.position(700, 480);
   answer_D.style('font-size: 40px');
   answer_D.style('cursor: pointer');
   answer_D.hide();
@@ -138,21 +139,72 @@ function setup() {
 
   // Adding Difficulty Buttons
   addition_button = createButton('Addition Only');
-  addition_button.position(200, 300);
+  addition_button.position(50, 400);
+  addition_button.style('background-color', '#4CAF65');
+  addition_button.style('padding: 15px 20px');
+  addition_button.style('border-radius: 25px 25px 25px 25px');
+  addition_button.style('cursor: pointer');
   addition_button.hide();
 
   subtraction_button = createButton('Subtraction Only');
-  subtraction_button.position(200, 400);
+  subtraction_button.position(225, 400);
+  subtraction_button.style('background-color', '#4CAF65');
+  subtraction_button.style('padding: 15px 20px');
+  subtraction_button.style('border-radius: 25px 25px 25px 25px');
+  subtraction_button.style('cursor: pointer');
   subtraction_button.hide();
 
   division_button = createButton('Division Only');
-  division_button.position(200, 350);
+  division_button.position(425, 400);
+  division_button.style('background-color', '#4CAF65');
+  division_button.style('padding: 15px 20px');
+  division_button.style('border-radius: 25px 25px 25px 25px');
+  division_button.style('cursor: pointer');
   division_button.hide();
 
   multiplication_button = createButton('Multiplication Only');
-  multiplication_button.position(200, 250);
+  multiplication_button.position(600, 400);
+  multiplication_button.style('background-color', '#4CAF65');
+  multiplication_button.style('padding: 15px 20px');
+  multiplication_button.style('border-radius: 25px 25px 25px 25px');
+  multiplication_button.style('cursor: pointer');
   multiplication_button.hide();
 
+  starWars_button = createButton("Star Wars");
+  starWars_button. position(75, 200);
+  starWars_button.style('color: white')
+  starWars_button.style('background-color', '#000000');
+  starWars_button.style('padding: 15px 20px');
+  starWars_button.style('border-radius: 25px 25px 25px 25px');
+  starWars_button.style('cursor: pointer');
+  starWars_button.hide();
+
+  moana_button = createButton("Moana");
+  moana_button. position(250, 200);
+  moana_button.style('color: white')
+  moana_button.style('background-color', '#1BAAD8');
+  moana_button.style('padding: 15px 20px');
+  moana_button.style('border-radius: 25px 25px 25px 25px');
+  moana_button.style('cursor: pointer');
+  moana_button.hide();
+
+  southPark_button = createButton("South Park");
+  southPark_button. position(450, 200);
+  southPark_button.style('color: white')
+  southPark_button.style('background-color', '#D8241B');
+  southPark_button.style('padding: 15px 20px');
+  southPark_button.style('border-radius: 25px 25px 25px 25px');
+  southPark_button.style('cursor: pointer');
+  southPark_button.hide();
+
+  fighterJet_button = createButton("Fighter Jet");
+  fighterJet_button. position(625, 200);
+  fighterJet_button.style('color: white')
+  fighterJet_button.style('background-color', '#C2C2BD');
+  fighterJet_button.style('padding: 15px 20px');
+  fighterJet_button.style('border-radius: 25px 25px 25px 25px');
+  fighterJet_button.style('cursor: pointer');
+  fighterJet_button.hide();
 
   answer_A.mousePressed(() => {
     if (correctAnswerChoice == 0) {
@@ -196,10 +248,17 @@ function setup() {
     goToSettings=true;
     start_game_button.hide();
     settings_button.hide();
+
     addition_button.show();
     subtraction_button.show();
     division_button.show();
     multiplication_button.show();
+
+    starWars_button.show();
+    moana_button.show();
+    southPark_button.show();
+    fighterJet_button.show();
+
     return_to_main.show();
   });
 
@@ -230,13 +289,18 @@ function setup() {
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
+
+    starWars_button.hide();
+    moana_button.hide();
+    southPark_button.hide();
+    fighterJet_button.hide();
   });
 
   // Math Button Functionality
     //Addition 
 
    // Addition Start the Game
-   addition_button.mousePressed(() => { // home menu start
+  addition_button.mousePressed(() => { // home menu start
     subtraction_only = false;
     division_only = false;
     multiplication_only = false;
@@ -253,7 +317,7 @@ function setup() {
   });
 
    // Subtraction Start the Game
-   subtraction_button.mousePressed(() => { // home menu start
+  subtraction_button.mousePressed(() => { // home menu start
     addition_only = false;
     division_only = false;
     multiplication_only = false;
@@ -269,7 +333,7 @@ function setup() {
     return_to_main.hide();
   });
    // Division Start the Game
-   division_button.mousePressed(() => { // home menu start
+  division_button.mousePressed(() => { // home menu start
     addition_only = false;
     subtraction_only = false;
     multiplication_only = false;
@@ -286,21 +350,57 @@ function setup() {
   });
 
     // Multiplication Start the Game
-    multiplication_button.mousePressed(() => { // home menu start
-      addition_only = false;
-      subtraction_only = false;
-      division_only = false;
+  multiplication_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    subtraction_only = false;
+    division_only = false;
   
-      multiplication_only = true;
-      startTheGame=true;
-      start_game_button.hide();
-      settings_button.hide();
-      addition_button.hide();
-      subtraction_button.hide();
-      division_button.hide();
-      multiplication_button.hide();
-      return_to_main.hide();
-    });
+    multiplication_only = true;
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+  });
+
+  starWars_button.mousePressed(() => { // home menu start
+    addition_only = false;
+    subtraction_only = false;
+    multiplication_button = false;
+    division_only = false;
+  
+    
+    startTheGame=true;
+    start_game_button.hide();
+    settings_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    starWars_button.hide();
+    return_to_main.hide();
+  });
+
+  // starWars_button.mousePressed(() => { // home menu start
+  //   addition_only = false;
+  //   subtraction_only = false;
+  //   multiplication_button = false;
+  //   division_only = false;
+  
+    
+  //   startTheGame=true;
+  //   start_game_button.hide();
+  //   settings_button.hide();
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+  //   starWars_button.hide();
+  //   return_to_main.hide();
+  // });
 
 }
 
@@ -324,11 +424,9 @@ function draw() {
 
   if (!startTheGame) {
     textSize(64);
-    textAlign(CENTER, TOP-CENTER);
-    text('Mathy Bird', width / 2, (height / 2) - 150);
-    textAlign(LEFT, BASELINE);
+    textAlign(CENTER);
+    text('Mathy Bird', width / 2, height / 5.5);
   }
-
 
   if (startTheGame) {
     if (gameFrameCount==0) {
@@ -338,6 +436,11 @@ function draw() {
     answer_B.show();
     answer_C.show();
     answer_D.show();
+
+    starWars_button.hide();
+    moana_button.hide();
+    southPark_button.hide();
+    fighterJet_button.hide();
 
     if (!isOver) {
       textSize(64);
@@ -410,10 +513,19 @@ function draw() {
     // prevTouched = touched;
   } else if (goToSettings) {
       // this is where we can add costomization
-      // textSize(64);
-      // textAlign(CENTER, CENTER);
-      // text('COMING SOON', width / 2, height / 2);
-      // textAlign(LEFT, BASELINE);
+      textSize(35);
+      textAlign(CENTER, CENTER);
+      text('Choose a Theme', width/2, height/3.9);
+      textAlign(LEFT, BASELINE);
+
+      textSize(16);
+      textAlign(CENTER, CENTER);
+      text('(These buttons are not yet functional.)', width/2, height/3.3)
+      
+      textSize(35);
+      textAlign(CENTER, CENTER);
+      text('Choose An Operation', width / 2, height / 1.7);
+      textAlign(LEFT, BASELINE);
   }
 
 }
