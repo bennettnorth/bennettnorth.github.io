@@ -424,11 +424,9 @@ function setup() {
   });
 
   starWars_button.mousePressed(() => { // start game with star wars theme
-    
+    birdSprite = loadImage('graphics/babyYoda.png'); 
     pipeBodySprite = loadImage('graphics/lightsaber.png');
     pipePeakSprite = loadImage('graphics/lightsaber.png');
-    birdSprite = loadImage('graphics/babyYoda.png');
-    //bgImg = loadImage('graphics/starWarsBackg.png');
     
     addition_button.hide();
     subtraction_button.hide();
@@ -440,70 +438,49 @@ function setup() {
     goToSettings = false;
   });
 
-  // moana_button.mousePressed(() => { // moana themed game
-  //   moana = true;
-
-  //   addition_only = false;
-  //   subtraction_only = false;
-  //   multiplication_button = false;
-  //   division_only = false;
+  // southPark_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
+  //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
+  //   birdSprite = loadImage('graphics/cartman.png');
     
-  //   startTheGame=true;
-  //   goToSettings = false;
-
-  //   start_game_button.hide();
-  //   settings_button.hide();
-
   //   addition_button.hide();
   //   subtraction_button.hide();
   //   division_button.hide();
   //   multiplication_button.hide();
-  
+
   //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
   // });
 
-  // southPark_button.mousePressed(() => { // south park themed game
-  //   south_park = true;
-
-  //   addition_only = false;
-  //   subtraction_only = false;
-  //   multiplication_button = false;
-  //   division_only = false;
+  // fighterJet_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/skyscraper.png');
+  //   pipePeakSprite = loadImage('graphics/skyscraper.png');
+  //   birdSprite = loadImage('graphics/fighterJet.png');
     
-  //   startTheGame=true;
-  //   goToSettings = false;
-
-  //   start_game_button.hide();
-  //   settings_button.hide();
-
   //   addition_button.hide();
   //   subtraction_button.hide();
   //   division_button.hide();
   //   multiplication_button.hide();
-  
+
   //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
   // });
 
-  // fighterJet_button.mousePressed(() => { // fighter jet theme
-  //   fighter_jet = true;
-
-  //   addition_only = false;
-  //   subtraction_only = false;
-  //   multiplication_button = false;
-  //   division_only = false;
+  // moana_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
+  //   pipePeakSprite = loadImage('graphics/waterSpout.jpg');
+  //   birdSprite = loadImage('graphics/moana.jpg');
     
-  //   startTheGame=true;
-  //   goToSettings = false;
-
-  //   start_game_button.hide();
-  //   settings_button.hide();
-
   //   addition_button.hide();
   //   subtraction_button.hide();
   //   division_button.hide();
   //   multiplication_button.hide();
-  
+
   //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
   // });
 
 }
@@ -534,7 +511,7 @@ function draw() {
   if (!startTheGame && !goToSettings) {
     textSize(12);
     textAlign(CENTER);
-    text('How to Play: \n Select the correct answer before your time runs out! \n choose with either your mouse or with the arrow keys \n Most importantly, Have Fun!', width /2, height -175);
+    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or the specified arrow keys. \n Most importantly, Have Fun!', width /2, height -175);
   }
 
   if (startTheGame) {
