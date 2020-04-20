@@ -536,7 +536,7 @@ function createQuestion() {
 
   answer_choice_A.html(shuffled[0]);
   answer_choice_B.html(shuffled[1]);
-  answer_choice_C.html(shuffled[2]);
+  answer_C.html(shuffled[2]);
   answer_choice_D.html(shuffled[3]);
 
   switch (shuffled.findIndex(element => element==correctAnswer)) {
