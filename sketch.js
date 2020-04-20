@@ -639,8 +639,8 @@ function draw() {
 function showScores() {
   textSize(32);
   textAlign(CENTER, CENTER)
-  text('Score: ' + score, width/2, height-50);
-  text('Record: ' + maxScore, width/2, height-20);
+  text('Score: ' + Math.floor(score / speedSlider.value()), width/2, height-50);
+  text('Record: ' + Math.floor(maxScore / speedSlider.value()), width/2, height-20);
 }
 
 function gameover() {
