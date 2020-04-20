@@ -71,14 +71,14 @@ function setup() {
   reset();
 
   start_game_button = createButton('Start Game');
-  start_game_button.position((width/2)-40,height/2);
+  start_game_button.position((width/2)-56,height/2);
   start_game_button.style('background-color', '#4CAF65');
   start_game_button.style('padding: 10px 27px');
   start_game_button.style('border-radius: 25px 25px 25px 25px');
   start_game_button.style('border: none');
 
   settings_button = createButton('Settings');
-  settings_button.position((width/2)-30,(height/2)+50);
+  settings_button.position((width/2)-45,(height/2)+50);
   settings_button.style('background-color', '#4CAF65');
   settings_button.style('padding: 10px 27px');
   settings_button.style('border-radius: 25px 25px 25px 25px');
