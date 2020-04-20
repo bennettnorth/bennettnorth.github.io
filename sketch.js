@@ -36,10 +36,7 @@ var userAnswer = false;
 
 var correctAnswerChoice;
 
-var answer_choice_A;
-var answer_choice_B;
-var answer_choice_C;
-var answer_choice_D;
+var timeLimit = 5;
 
 var addition_only = false;
 var subtraction_only = false;
@@ -202,6 +199,18 @@ function setup() {
   multiplication_button.style('border: none');
   multiplication_button.hide();
 
+  // timeLimitText = createP('Select Speed of Game');
+  // timeLimitButton.hide();
+
+  easyButton = createButton('Easy: 1 question per 10 pipes');
+  easyButton.hide();
+  
+  easyButton.mousePressed(() => {
+    timeLimit = 10;
+  });
+
+
+  // customization buttons
   starWars_button = createButton("Star Wars");
   starWars_button. position(75, 200);
   starWars_button.style('color: white')
@@ -607,7 +616,7 @@ function draw() {
 
 
   // after every 3 pipes, check if the user's answer was correct
-    if (count==3) {
+    if (count==3) { // change to timelimit var
       if (userAnswer) {
         count=0;
         userAnswer=false;
@@ -626,7 +635,7 @@ function draw() {
       textSize(64);
       text(question, width / 2, (height / 2) - 190);
       textSize(25);
-      var pipeCount = 3-count;
+      var pipeCount = 3-count; // change 3 to timlimit var
       text('Pipes left: ' + pipeCount.toString(), (width/2), height - 555);
     }
 
