@@ -46,7 +46,10 @@ var subtraction_only = false;
 var division_only = false;
 var multiplication_only = false;
 
-var starWars_button = false;
+var star_wars = false;
+var moana = false;
+var south_park = false;
+var fighter_jet = false;
 
 var question;
 var new_question = false;
@@ -110,7 +113,7 @@ function setup() {
   answer_A.hide();
 
   answer_B = createButton("B");
-  answer_B.position(700, 40);
+  answer_B.position(680, 40);
   answer_B.style('background-color', '#4CAF65');
   answer_B.style('padding: 25px 30px');
   answer_B.style('border-radius: 25px 25px 25px 25px');
@@ -131,7 +134,7 @@ function setup() {
   answer_D.style('background-color', '#4CAF65');
   answer_D.style('padding: 25px 30px');
   answer_D.style('border-radius: 25px 25px 25px 25px');
-  answer_D.position(700, 480);
+  answer_D.position(680, 480);
   answer_D.style('font-size: 40px');
   answer_D.style('cursor: pointer');
   answer_D.hide();
@@ -240,6 +243,7 @@ function setup() {
 
   start_game_button.mousePressed(() => { // home menu start
     startTheGame=true;
+    goToSettings = false;
     start_game_button.hide();
     settings_button.hide();
   });
@@ -259,11 +263,17 @@ function setup() {
     southPark_button.show();
     fighterJet_button.show();
 
+    star_wars = false;
+    moana = false;
+    south_park = false;
+    fighter_jet = false;
+
     return_to_main.show();
   });
 
   restart_button.mousePressed(() => { // restart the game w/out going to menu
     startTheGame=true;
+    goToSettings = false;
     restart_button.hide();
     leave_button.hide();
     reset();
@@ -271,6 +281,7 @@ function setup() {
 
   leave_button.mousePressed(() => { // return to main menu from game
     startTheGame=false;
+    goToSettings = false;
     leave_button.hide();
     restart_button.hide();
     start_game_button.show();
@@ -307,6 +318,8 @@ function setup() {
 
     addition_only = true;
     startTheGame=true;
+    goToSettings = false;
+
     start_game_button.hide();
     settings_button.hide();
     addition_button.hide();
@@ -324,6 +337,8 @@ function setup() {
 
     subtraction_only = true;
     startTheGame=true;
+    goToSettings = false;
+
     start_game_button.hide();
     settings_button.hide();
     addition_button.hide();
@@ -340,6 +355,8 @@ function setup() {
 
     division_only = true;
     startTheGame=true;
+    goToSettings = false;
+
     start_game_button.hide();
     settings_button.hide();
     addition_button.hide();
@@ -357,6 +374,8 @@ function setup() {
   
     multiplication_only = true;
     startTheGame=true;
+    goToSettings = false;
+
     start_game_button.hide();
     settings_button.hide();
     addition_button.hide();
@@ -366,39 +385,91 @@ function setup() {
     return_to_main.hide();
   });
 
-  starWars_button.mousePressed(() => { // home menu start
-    addition_only = false;
-    subtraction_only = false;
-    multiplication_button = false;
-    division_only = false;
-  
-    
-    startTheGame=true;
-    start_game_button.hide();
-    settings_button.hide();
-    addition_button.hide();
-    subtraction_button.hide();
-    division_button.hide();
-    multiplication_button.hide();
-    starWars_button.hide();
-    return_to_main.hide();
-  });
+  // starWars_button.mousePressed(() => { // start game with star wars theme
+  //   star_wars = true;
 
-  // starWars_button.mousePressed(() => { // home menu start
   //   addition_only = false;
   //   subtraction_only = false;
   //   multiplication_button = false;
   //   division_only = false;
   
-    
   //   startTheGame=true;
+  //   goToSettings = false;
+
   //   start_game_button.hide();
   //   settings_button.hide();
+
   //   addition_button.hide();
   //   subtraction_button.hide();
   //   division_button.hide();
   //   multiplication_button.hide();
-  //   starWars_button.hide();
+
+  //   return_to_main.hide();
+  // });
+
+  // moana_button.mousePressed(() => { // moana themed game
+  //   moana = true;
+
+  //   addition_only = false;
+  //   subtraction_only = false;
+  //   multiplication_button = false;
+  //   division_only = false;
+    
+  //   startTheGame=true;
+  //   goToSettings = false;
+
+  //   start_game_button.hide();
+  //   settings_button.hide();
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+  
+  //   return_to_main.hide();
+  // });
+
+  // southPark_button.mousePressed(() => { // south park themed game
+  //   south_park = true;
+
+  //   addition_only = false;
+  //   subtraction_only = false;
+  //   multiplication_button = false;
+  //   division_only = false;
+    
+  //   startTheGame=true;
+  //   goToSettings = false;
+
+  //   start_game_button.hide();
+  //   settings_button.hide();
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+  
+  //   return_to_main.hide();
+  // });
+
+  // fighterJet_button.mousePressed(() => { // fighter jet theme
+  //   fighter_jet = true;
+
+  //   addition_only = false;
+  //   subtraction_only = false;
+  //   multiplication_button = false;
+  //   division_only = false;
+    
+  //   startTheGame=true;
+  //   goToSettings = false;
+
+  //   start_game_button.hide();
+  //   settings_button.hide();
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+  
   //   return_to_main.hide();
   // });
 
@@ -441,6 +512,34 @@ function draw() {
     moana_button.hide();
     southPark_button.hide();
     fighterJet_button.hide();
+
+    // if(star_wars) {
+    //   pipeBodySprite = loadImage('graphics/babyYoda.png');
+    //   pipePeakSprite = loadImage('graphics/lightsaber.png');
+    //   birdSprite = loadImage('graphics/lightsaber.png');
+    //   bgImg = loadImage('graphics/starWarsBackground.jpg');
+    // }
+
+    // if(moana) {
+    //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
+    //   pipePeakSprite = loadImage('graphics/pipe_body.jpg');
+    //   birdSprite = loadImage('graphics/moana.jpg');
+    //   bgImg = loadImage('graphics/moanaBackgroung.jpg');
+    // }
+
+    // if(south_park) {
+    //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
+    //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
+    //   birdSprite = loadImage('graphics/cartman.png');
+    //   bgImg = loadImage('graphics/southParkBackground.png');
+    // }
+
+    // if(fighter_jet) {
+    //   pipeBodySprite = loadImage('graphics/skyscraper.png');
+    //   pipePeakSprite = loadImage('graphics/skyscraper.png');
+    //   birdSprite = loadImage('graphics/fighterJet.png');
+    //   bgImg = loadImage('graphics/blueSkyBackground.png');
+    // }
 
     if (!isOver) {
       textSize(64);
