@@ -52,9 +52,7 @@ var question;
 var new_question = false;
 
 var correctAnswer = 0;
-// var currTime = new Date();
-// var startTime = 0;
-// var endTime = 0;
+
 
 function preload() {
   pipeBodySprite = loadImage('graphics/pipe_body.png');
@@ -68,34 +66,42 @@ function setup() {
   reset();
 
   start_game_button = createButton('Start Game');
-  start_game_button.position((width/2)-56,height/2);
+  start_game_button.position((width / 2) - 56, height / 2);
   start_game_button.style('background-color', '#4CAF65');
   start_game_button.style('padding: 10px 27px');
   start_game_button.style('border-radius: 25px 25px 25px 25px');
   start_game_button.style('border: none');
 
+  start_game_button.id('StartGameID');
+
   settings_button = createButton('Settings');
-  settings_button.position((width/2)-45,(height/2)+50);
+  settings_button.position((width / 2) - 45, (height / 2) + 50);
   settings_button.style('background-color', '#4CAF65');
   settings_button.style('padding: 10px 27px');
   settings_button.style('border-radius: 25px 25px 25px 25px');
   settings_button.style('border: none');
 
+  settings_button.id('SettingsID');
+
   restart_button = createButton('Restart');
-  restart_button.position((width/2)-20, (height/2)+100);
+  restart_button.position((width / 2) - 20, (height / 2) + 100);
   restart_button.style('background-color', '#4CAF65');
   restart_button.style('padding: 5px 14px');
   restart_button.style('border-radius: 25px 25px 25px 25px');
   restart_button.style('border: none');
   restart_button.hide();
 
+  restart_button.id('RestartID');
+
   leave_button = createButton('Main Menu');
-  leave_button.position((width/2)-31.5, (height/2)+140);
+  leave_button.position((width / 2) - 31.5, (height / 2) + 140);
   leave_button.style('background-color', '#4CAF65');
   leave_button.style('padding: 5px 14px');
   leave_button.style('border-radius: 25px 25px 25px 25px');
   leave_button.style('border: none');
   leave_button.hide();
+
+  leave_button.id('LeaveID');
 
   return_to_main = createButton('Return to Main Menu');
   return_to_main.position(600, 575);
@@ -104,7 +110,9 @@ function setup() {
   return_to_main.style('border-radius: 25px 25px 25px 25px');
   return_to_main.style('border: none');
   return_to_main.hide();
-  
+
+  return_to_main.id("ReturnID");
+
   answer_A = createButton("A");
   answer_A.position(40, 20);
   answer_A.style('background-color', '#4CAF65');
@@ -115,9 +123,11 @@ function setup() {
   answer_A.style('border: none');
   answer_A.hide();
 
-  hint_a = createP('[Escape]');
-  hint_a.position(50, 125);
-  hint_a.hide();
+  answer_A.id("AID");
+
+  // hint_a = createP('[Escape]');
+  // hint_a.position(50, 125);
+  // hint_a.hide();
 
   answer_B = createButton("B");
   answer_B.position(680, 20);
@@ -129,9 +139,10 @@ function setup() {
   answer_B.style('border: none');
   answer_B.hide();
 
-  hint_b = createP('[Backspace]');
-  hint_b.position(690, 125);
-  hint_b.hide();
+  answer_B.id("BID");
+  // hint_b = createP('[Backspace]');
+  // hint_b.position(690, 125);
+  // hint_b.hide();
 
   answer_C = createButton("C");
   answer_C.style('background-color', '#4CAF65');
@@ -143,9 +154,10 @@ function setup() {
   answer_C.style('border: none');
   answer_C.hide();
 
-  hint_c = createP('[Shift]');
-  hint_c.position(50, 565);
-  hint_c.hide();
+  answer_C.id('CID');
+  // hint_c = createP('[Shift]');
+  // hint_c.position(50, 565);
+  // hint_c.hide();
 
   answer_D = createButton("D");
   answer_D.style('background-color', '#4CAF65');
@@ -157,9 +169,11 @@ function setup() {
   answer_D.style('border: none');
   answer_D.hide();
 
-  hint_d = createP('[Enter]');
-  hint_d.position(690, 565);
-  hint_d.hide();
+  answer_D.id("DID");
+
+  // hint_d = createP('[Enter]');
+  // hint_d.position(690, 565);
+  // hint_d.hide();
 
 
   // Adding Difficulty Buttons
@@ -172,6 +186,8 @@ function setup() {
   addition_button.style('border: none');
   addition_button.hide();
 
+  addition_button.id('AddID');
+
   subtraction_button = createButton('Subtraction Only');
   subtraction_button.position(225, 350);
   subtraction_button.style('background-color', '#4CAF65');
@@ -180,6 +196,8 @@ function setup() {
   subtraction_button.style('cursor: pointer');
   subtraction_button.style('border: none');
   subtraction_button.hide();
+
+  subtraction_button.id("SubID");
 
   division_button = createButton('Division Only');
   division_button.position(425, 350);
@@ -190,6 +208,8 @@ function setup() {
   division_button.style('border: none');
   division_button.hide();
 
+  division_button.id("DivID");
+
   multiplication_button = createButton('Multiplication Only');
   multiplication_button.position(600, 350);
   multiplication_button.style('background-color', '#4CAF65');
@@ -199,10 +219,11 @@ function setup() {
   multiplication_button.style('border: none');
   multiplication_button.hide();
 
+  multiplication_button.id("MultID");
 
   // customization buttons
   starWars_button = createButton("Star Wars");
-  starWars_button. position(75, 200);
+  starWars_button.position(75, 200);
   starWars_button.style('color: white')
   starWars_button.style('background-color', '#000000');
   starWars_button.style('padding: 15px 20px');
@@ -210,8 +231,10 @@ function setup() {
   starWars_button.style('cursor: pointer');
   starWars_button.hide();
 
+  starWars_button.id('SWID');
+
   moana_button = createButton("Moana");
-  moana_button. position(250, 200);
+  moana_button.position(250, 200);
   moana_button.style('color: white')
   moana_button.style('background-color', '#1BAAD8');
   moana_button.style('padding: 15px 20px');
@@ -220,7 +243,7 @@ function setup() {
   moana_button.hide();
 
   southPark_button = createButton("South Park");
-  southPark_button. position(450, 200);
+  southPark_button.position(450, 200);
   southPark_button.style('color: white')
   southPark_button.style('background-color', '#D8241B');
   southPark_button.style('padding: 15px 20px');
@@ -229,7 +252,7 @@ function setup() {
   southPark_button.hide();
 
   fighterJet_button = createButton("Fighter Jet");
-  fighterJet_button. position(625, 200);
+  fighterJet_button.position(625, 200);
   fighterJet_button.style('color: white')
   fighterJet_button.style('background-color', '#C2C2BD');
   fighterJet_button.style('padding: 15px 20px');
@@ -270,14 +293,14 @@ function setup() {
   });
 
   start_game_button.mousePressed(() => { // home menu start
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
     start_game_button.hide();
     settings_button.hide();
   });
 
   settings_button.mousePressed(() => { // go to settings
-    goToSettings=true;
+    goToSettings = true;
     start_game_button.hide();
     settings_button.hide();
 
@@ -290,7 +313,7 @@ function setup() {
     moana_button.show();
     southPark_button.show();
     fighterJet_button.show();
-    
+
     speedSlider.show();
 
     star_wars = false;
@@ -302,7 +325,7 @@ function setup() {
   });
 
   restart_button.mousePressed(() => { // restart the game w/out going to menu
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
     restart_button.hide();
     leave_button.hide();
@@ -310,7 +333,7 @@ function setup() {
   });
 
   leave_button.mousePressed(() => { // return to main menu from game
-    startTheGame=false;
+    startTheGame = false;
     goToSettings = false;
     leave_button.hide();
     restart_button.hide();
@@ -340,16 +363,16 @@ function setup() {
   });
 
   // Math Button Functionality
-    //Addition 
+  //Addition 
 
-   // Addition Start the Game
+  // Addition Start the Game
   addition_button.mousePressed(() => { // home menu start
     subtraction_only = false;
     division_only = false;
     multiplication_only = false;
 
     addition_only = true;
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
 
     start_game_button.hide();
@@ -363,14 +386,14 @@ function setup() {
     speedSlider.hide();
   });
 
-   // Subtraction Start the Game
+  // Subtraction Start the Game
   subtraction_button.mousePressed(() => { // home menu start
     addition_only = false;
     division_only = false;
     multiplication_only = false;
 
     subtraction_only = true;
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
 
     start_game_button.hide();
@@ -383,14 +406,14 @@ function setup() {
 
     speedSlider.hide();
   });
-   // Division Start the Game
+  // Division Start the Game
   division_button.mousePressed(() => { // home menu start
     addition_only = false;
     subtraction_only = false;
     multiplication_only = false;
 
     division_only = true;
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
 
     start_game_button.hide();
@@ -404,14 +427,14 @@ function setup() {
     speedSlider.hide();
   });
 
-    // Multiplication Start the Game
+  // Multiplication Start the Game
   multiplication_button.mousePressed(() => { // home menu start
     addition_only = false;
     subtraction_only = false;
     division_only = false;
-  
+
     multiplication_only = true;
-    startTheGame=true;
+    startTheGame = true;
     goToSettings = false;
 
     start_game_button.hide();
@@ -426,62 +449,17 @@ function setup() {
   });
 
   starWars_button.mousePressed(() => { // start game with star wars theme
-   
+
     pipeBodySprite = loadImage('graphics/lightsaber.png');
     pipePeakSprite = loadImage('graphics/lightsaber.png');
-    birdSprite = loadImage('graphics/babyYoda.png'); 
-    
+    birdSprite = loadImage('graphics/babyYoda.png');
+
   });
-
-  // southPark_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
-  //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
-  //   birdSprite = loadImage('graphics/cartman.png');
-    
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
-
-  // fighterJet_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/skyscraper.png');
-  //   pipePeakSprite = loadImage('graphics/skyscraper.png');
-  //   birdSprite = loadImage('graphics/fighterJet.png');
-    
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
-
-  // moana_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
-  //   pipePeakSprite = loadImage('graphics/waterSpout.jpg');
-  //   birdSprite = loadImage('graphics/moana.jpg');
-    
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
 
   // setting slider for speed of game
   speedSlider = createSlider(1, 10, 5, 1);
   speedSlider.position((width / 2) / 3, (height / 1.50) + 75);
-  speedSlider.style('width', `${width*(2/3)}`);
+  speedSlider.style('width', `${width * (2 / 3)}`);
   //speedSlider.style('align', 'CENTER')
   speedSlider.hide();
 
@@ -505,6 +483,12 @@ function draw() {
     }
   }
 
+
+  // if (document.activeElement === document.getElementById("StartGameID")) {
+  //   console.log('works again');
+  // }
+
+
   if (!startTheGame) {
     textSize(64);
     textAlign(CENTER);
@@ -513,23 +497,12 @@ function draw() {
   if (!startTheGame && !goToSettings) {
     textSize(12);
     textAlign(CENTER);
-    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or one of the specified keys: esc, shift, backspace & enter. \n Most importantly, Have Fun!', width /2, height -175);
+    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or one of the specified keys: esc, shift, backspace & enter. \n Most importantly, Have Fun!', width / 2, height - 175);
   }
 
   if (startTheGame) {
-    if (gameFrameCount==0) {
+    if (gameFrameCount == 0) {
       question = createQuestion();
-    }
-    if (gameFrameCount<(420*2)) {
-        hint_a.show();
-        hint_b.show();
-        hint_c.show();
-        hint_d.show();
-    } else if (gameFrameCount>(420*2)) {
-        hint_a.hide();
-        hint_b.hide();
-        hint_c.hide();
-        hint_d.hide();
     }
     answer_A.show();
     answer_B.show();
@@ -572,11 +545,11 @@ function draw() {
     // }
 
 
-  // after every 3 pipes, check if the user's answer was correct
-    if (count==speedSlider.value()) { // change to timelimit var
+    // after every 3 pipes, check if the user's answer was correct
+    if (count == speedSlider.value()) { // change to timelimit var
       if (userAnswer) {
-        count=0;
-        userAnswer=false;
+        count = 0;
+        userAnswer = false;
         question = createQuestion();
       } else {
         bird.wrongAnswer();
@@ -592,8 +565,8 @@ function draw() {
       textSize(64);
       text(question, width / 2, (height / 2) - 190);
       textSize(25);
-      var pipeCount = speedSlider.value()-count; // change 3 to timlimit var
-      text('Pipes left: ' + pipeCount.toString(), (width/2), height - 555);
+      var pipeCount = speedSlider.value() - count; // change 3 to timlimit var
+      text('Pipes left: ' + pipeCount.toString(), (width / 2), height - 555);
     }
 
     showScores();
@@ -613,25 +586,25 @@ function draw() {
     // // updates prevTouched
     // prevTouched = touched;
   } else if (goToSettings) {
-      // this is where we can add costomization
-      textSize(35);
-      textAlign(CENTER, CENTER);
-      text('Choose a Theme', width/2, height/3.9);
-      textAlign(LEFT, BASELINE);
+    // this is where we can add costomization
+    textSize(35);
+    textAlign(CENTER, CENTER);
+    text('Choose a Theme', width / 2, height / 3.9);
+    textAlign(LEFT, BASELINE);
 
-      textSize(16);
-      textAlign(CENTER, CENTER);
-      text('(These buttons are not yet functional.)', width/2, height/3.3)
-      
-      textSize(35);
-      textAlign(CENTER, CENTER);
-      text('Choose An Operation', width / 2, height / 2);
-      textAlign(LEFT, BASELINE);
+    textSize(16);
+    textAlign(CENTER, CENTER);
+    text('(These buttons are not yet functional.)', width / 2, height / 3.3)
 
-      textSize(35);
-      textAlign(CENTER, CENTER);
-      text('Set Game Speed', width / 2, (height / 1.50) + 25);
-      textAlign(LEFT, BASELINE);
+    textSize(35);
+    textAlign(CENTER, CENTER);
+    text('Choose An Operation', width / 2, height / 2);
+    textAlign(LEFT, BASELINE);
+
+    textSize(35);
+    textAlign(CENTER, CENTER);
+    text('Set Game Speed', width / 2, (height / 1.50) + 25);
+    textAlign(LEFT, BASELINE);
   }
 
 }
@@ -639,8 +612,8 @@ function draw() {
 function showScores() {
   textSize(32);
   textAlign(CENTER, CENTER)
-  text('Score: ' + Math.floor(score / speedSlider.value()), width/2, height-50);
-  text('Record: ' + Math.floor(maxScore / speedSlider.value()), width/2, height-20);
+  text('Score: ' + Math.floor(score / speedSlider.value()), width / 2, height - 50);
+  text('Record: ' + Math.floor(maxScore / speedSlider.value()), width / 2, height - 20);
 }
 
 function gameover() {
@@ -651,7 +624,7 @@ function gameover() {
   let correctString = 'Correct Answer: '
   textSize(24);
   textAlign(CENTER, CENTER);
-  text(correctString.concat(correctAnswer.toString()), width / 2, (height / 2)+50);
+  text(correctString.concat(correctAnswer.toString()), width / 2, (height / 2) + 50);
   textAlign(LEFT, BASELINE);
   maxScore = max(score, maxScore);
   isOver = true;
@@ -663,16 +636,6 @@ function gameover() {
   answer_B.hide();
   answer_C.hide();
   answer_D.hide();
-
-  //answer_choice_A.html(' ');
-  //answer_choice_B.html(' ');
-  //answer_choice_C.html(' ');
-  //answer_choice_D.html(' ');
-
-  hint_a.hide();
-  hint_b.hide();
-  hint_c.hide();
-  hint_d.hide();
 
   noLoop();
 }
@@ -695,22 +658,18 @@ function createQuestion() {
   let strings_of_equations = ['+', '-', 'x', '/']; // add filter
   let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
 
-  if(addition_only == true ){
-     z = 0;
-  } 
-  if(subtraction_only == true){
-     z = 1;
+  if (addition_only == true) {
+    z = 0;
   }
-  if(division_only == true){
-     z = 3;
+  if (subtraction_only == true) {
+    z = 1;
   }
-  if(multiplication_only == true){
-     z =2;
-  } 
-  
-  
-  
-  //let strings_of_equations = ['+', '-', 'x', '/']; // add filter
+  if (division_only == true) {
+    z = 3;
+  }
+  if (multiplication_only == true) {
+    z = 2;
+  }
 
   //generate random range_of_numbers
   let x = Math.floor(Math.random() * Math.floor(10)) // change 10 to a factor variable
@@ -727,42 +686,42 @@ function createQuestion() {
     y = Math.floor(Math.random() * Math.floor(10))
   }
 
-  switch(z) {
+  switch (z) {
     case 0:
-      correctAnswer=x+y;
+      correctAnswer = x + y;
       break;
     case 1:
-      correctAnswer=x-y;
+      correctAnswer = x - y;
       break;
     case 2:
-      correctAnswer=x*y;
-      if (x==0 || y==0) {
+      correctAnswer = x * y;
+      if (x == 0 || y == 0) {
         zeroCatch = true;
       }
       break;
     case 3:
-      while (x%y!=0) {
+      while (x % y != 0) {
         y = Math.floor(Math.random() * Math.floor(10));
       }
-      correctAnswer=x/y;
+      correctAnswer = x / y;
       break;
   }
 
 
   let danger = 0
-  
-  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
-  while (randomChoice==correctAnswer || randomChoice==(correctAnswer+x) || randomChoice==(correctAnswer-y)) {
-    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer-y,correctAnswer+x));
+
+  let randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer - y, correctAnswer + x));
+  while (randomChoice == correctAnswer || randomChoice == (correctAnswer + x) || randomChoice == (correctAnswer - y)) {
+    randomChoice = Math.floor(Math.random() * Math.floor(correctAnswer - y, correctAnswer + x));
     danger++;
-    if (danger>5) {
+    if (danger > 5) {
       console.log('danger danger');
-      randomChoice = correctAnswer+x+y+2;
+      randomChoice = correctAnswer + x + y + 2;
       break;
-    } 
+    }
   }
-  let choices = [correctAnswer, correctAnswer+x, correctAnswer-y, randomChoice];
-  
+  let choices = [correctAnswer, correctAnswer + x, correctAnswer - y, randomChoice];
+
 
   let shuffled = shuffleThis(choices);
 
@@ -771,7 +730,7 @@ function createQuestion() {
   answer_C.html(shuffled[2]);
   answer_D.html(shuffled[3]);
 
-  switch (shuffled.findIndex(element => element==correctAnswer)) {
+  switch (shuffled.findIndex(element => element == correctAnswer)) {
     case 0:
       correctAnswerChoice = 0;
       break;
@@ -814,39 +773,280 @@ function shuffleThis(array) {
 
 
 function keyPressed() {
+  if (keyCode == ENTER) {
+    switch (document.activeElement) {
+      case document.getElementById("StartGameID"):
+        startTheGameF();
+        break;
+      case document.getElementById("SettingsID"):
+        settingsF();
+        break;
+      case document.getElementById("RestartID"):
+        resetF();
+        break;
+      case document.getElementById("ReturnID"):
+        returnMainF();
+        break;
+      case document.getElementById("LeaveID"):
+        leaveF();
+        break;
+      case document.getElementById("AID"):
+        if (correctAnswerChoice == 0) {
+          userAnswer = true;
+        } else {
+          userAnswer = false;
+        }
+        break;
+      case document.getElementById("BID"):
+        if (correctAnswerChoice == 1) {
+          userAnswer = true;
+        } else {
+          userAnswer = false;
+        }
+        break;
+      case document.getElementById("CID"):
+        if (correctAnswerChoice == 2) {
+          userAnswer = true;
+        } else {
+          userAnswer = false;
+        }
+        break;
+      case document.getElementById("DID"):
+        if (correctAnswerChoice == 3) {
+          userAnswer = true;
+        } else {
+          userAnswer = false;
+        }
+        break;
+      case document.getElementById("AddID"):
+        addF();
+        break;
+      case document.getElementById("SubID"):
+        subF();
+        break;
+      case document.getElementById("DivID"):
+        divF();
+        break;
+      case document.getElementById("MultID"):
+        multF();
+        break;
+      case document.getElementById("SWID"):
+        swF();
+        break;
+    }
+  }
+}
+
+function startTheGameF() {
+  startTheGame = true;
+  goToSettings = false;
+  start_game_button.hide();
+  settings_button.hide();
+}
+
+function settingsF() {
+  goToSettings = true;
+  start_game_button.hide();
+  settings_button.hide();
+
+  addition_button.show();
+  subtraction_button.show();
+  division_button.show();
+  multiplication_button.show();
+
+  starWars_button.show();
+  moana_button.show();
+  southPark_button.show();
+  fighterJet_button.show();
+
+  speedSlider.show();
+
+  star_wars = false;
+  moana = false;
+  south_park = false;
+  fighter_jet = false;
+
+  return_to_main.show();
+}
+
+function resetF() {
+  startTheGame = true;
+  goToSettings = false;
+  restart_button.hide();
+  leave_button.hide();
+  reset();
+}
+
+function leaveF() {
+  startTheGame = false;
+  goToSettings = false;
+  leave_button.hide();
+  restart_button.hide();
+  start_game_button.show();
+  settings_button.show();
+  reset();
+}
+
+function returnMainF() {
+  goToSettings = false;
+  start_game_button.show();
+  settings_button.show();
+  return_to_main.hide();
+
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
+
+  starWars_button.hide();
+  moana_button.hide();
+  southPark_button.hide();
+  fighterJet_button.hide();
+
+  speedSlider.hide();
+}
+
+function addF() {
+  subtraction_only = false;
+  division_only = false;
+  multiplication_only = false;
+
+  addition_only = true;
+  startTheGame = true;
+  goToSettings = false;
+
+  start_game_button.hide();
+  settings_button.hide();
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
+
+  speedSlider.hide();
+}
+
+function subF() {
+  addition_only = false;
+  division_only = false;
+  multiplication_only = false;
+
+  subtraction_only = true;
+  startTheGame = true;
+  goToSettings = false;
+
+  start_game_button.hide();
+  settings_button.hide();
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
+
+  speedSlider.hide();
+}
+
+function divF() {
+  addition_only = false;
+  subtraction_only = false;
+  multiplication_only = false;
+
+  division_only = true;
+  startTheGame = true;
+  goToSettings = false;
+
+  start_game_button.hide();
+  settings_button.hide();
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
+
+  speedSlider.hide();
+}
+
+function multF() {
+  addition_only = false;
+  subtraction_only = false;
+  division_only = false;
+
+  multiplication_only = true;
+  startTheGame = true;
+  goToSettings = false;
+
+  start_game_button.hide();
+  settings_button.hide();
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
+
+  speedSlider.hide();
+}
+
+function swF() {
+  pipeBodySprite = loadImage('graphics/lightsaber.png');
+  pipePeakSprite = loadImage('graphics/lightsaber.png');
+  birdSprite = loadImage('graphics/babyYoda.png');
+}
+// Grave yard
   // if (key === ' ') {
   //   //bird.up();
   //   gameover()
   //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
   // }
-  if (keyCode == ESCAPE) {
-    if (correctAnswerChoice == 0) {
-      userAnswer = true;
-    } else {
-      userAnswer = false;
-    }
-  } else if (keyCode == BACKSPACE) {
-    if (correctAnswerChoice == 1) {
-      userAnswer = true;
-    } else {
-      userAnswer = false;
-    }
-  } else if (keyCode == SHIFT) {
-    if (correctAnswerChoice == 2) {
-      userAnswer = true;
-    } else {
-      userAnswer = false;
-    }
-  } else if (keyCode == ENTER) {
-    if (correctAnswerChoice == 3) {
-      userAnswer = true;
-    } else {
-      userAnswer = false;
-    }
-  }
 
-}
+
 //
 // function touchStarted() {
 //   if (isOver) reset();
 // }
+
+
+// southPark_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
+  //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
+  //   birdSprite = loadImage('graphics/cartman.png');
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+
+  //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
+  // });
+
+  // fighterJet_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/skyscraper.png');
+  //   pipePeakSprite = loadImage('graphics/skyscraper.png');
+  //   birdSprite = loadImage('graphics/fighterJet.png');
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+
+  //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
+  // });
+
+  // moana_button.mousePressed(() => { // start game with star wars theme 
+  //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
+  //   pipePeakSprite = loadImage('graphics/waterSpout.jpg');
+  //   birdSprite = loadImage('graphics/moana.jpg');
+
+  //   addition_button.hide();
+  //   subtraction_button.hide();
+  //   division_button.hide();
+  //   multiplication_button.hide();
+
+  //   return_to_main.hide();
+  //   startTheGame=true;
+  //   goToSettings = false;
+  // });
