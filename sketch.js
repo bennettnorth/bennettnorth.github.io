@@ -108,10 +108,91 @@ function setup() {
   return_to_main.style('background-color', '#4CAF65');
   return_to_main.style('padding: 5px 14px');
   return_to_main.style('border-radius: 25px 25px 25px 25px');
-  return_to_main.style('border: none');
+  return_to_main.style('border-color: white');
   return_to_main.hide();
 
   return_to_main.id("ReturnID");
+
+  easiestModeButton = createButton(`10 pipes`);
+  easiestModeButton.position(((width / 2) / 3) + 475, ((height / 1.50) + 100));
+  easiestModeButton.style('background-color', '#4CAF65');
+  easiestModeButton.style('padding: 15px 20px');
+  easiestModeButton.style('border-radius: 25px 25px 25px 25px');
+  easiestModeButton.style('cursor: pointer');
+  easiestModeButton.style('border: none');
+  easiestModeButton.hide();
+
+  easiestModeButton.mousePressed(() => {
+    speedSlider.value(7);
+    //setEasyMode();
+  });
+  easiestModeButton.id('easiestMode');
+
+  esayModeButton = createButton(`Easy`);
+  esayModeButton.position(((width / 2) / 3) + 325, ((height / 1.50) + 100));
+  esayModeButton.style('background-color', '#4CAF65');
+  esayModeButton.style('padding: 15px 20px');
+  esayModeButton.style('border-radius: 25px 25px 25px 25px');
+  esayModeButton.style('cursor: pointer');
+  esayModeButton.style('border: none');
+  esayModeButton.hide();
+
+  esayModeButton.mousePressed(() => {
+    speedSlider.value(7);
+    //setEasyMode();
+  });
+  esayModeButton.id('easyMode');
+
+  normalModeButton = createButton(`Normal`);
+  normalModeButton.position(((width / 2) / 3) + 200, ((height / 1.50) + 100));
+  normalModeButton.style('background-color', '#4CAF65');
+  normalModeButton.style('padding: 15px 20px');
+  normalModeButton.style('border-radius: 25px 25px 25px 25px');
+  normalModeButton.style('cursor: pointer');
+  normalModeButton.style('border: none');
+  normalModeButton.hide();
+
+  normalModeButton.mousePressed(() => {
+    speedSlider.value(5);
+  });
+  normalModeButton.id('normalMode');
+
+  hardModeButton = createButton(`Hard`);
+  hardModeButton.position(((width / 2) / 3) + 90, ((height / 1.50) + 100));
+  hardModeButton.style('background-color', '#4CAF65');
+  hardModeButton.style('padding: 15px 20px');
+  hardModeButton.style('border-radius: 25px 25px 25px 25px');
+  hardModeButton.style('cursor: pointer');
+  hardModeButton.style('border: none');
+  hardModeButton.hide();
+
+  hardModeButton.mousePressed(() => {
+    speedSlider.value(3);
+  });
+  hardModeButton.id('hardMode');
+
+  hardestModeButton = createButton(`1 pipe`);
+  hardestModeButton.position(((width / 2) / 3) - 30, ((height / 1.50) + 100));
+  hardestModeButton.style('background-color', '#4CAF65');
+  hardestModeButton.style('padding: 15px 20px');
+  hardestModeButton.style('border-radius: 25px 25px 25px 25px');
+  hardestModeButton.style('cursor: pointer');
+  hardestModeButton.style('border: none');
+  hardestModeButton.hide();
+
+  hardestModeButton.mousePressed(() => {
+    speedSlider.value(1);
+  });
+  hardestModeButton.id('hardestMode');
+
+
+  // setting slider for speed of game
+  speedSlider = createSlider(1, 10, 5, 1);
+  speedSlider.position((width / 2) / 3, (height / 1.50) + 75);
+  speedSlider.style('width', `${width * (2 / 3)}`);
+  //speedSlider.style('align', 'CENTER')
+  speedSlider.hide();
+
 
   answer_A = createButton("A");
   answer_A.position(40, 20);
@@ -178,7 +259,7 @@ function setup() {
 
   // Adding Difficulty Buttons
   addition_button = createButton('Addition Only');
-  addition_button.position(50, 350);
+  addition_button.position(50, 340);
   addition_button.style('background-color', '#4CAF65');
   addition_button.style('padding: 15px 20px');
   addition_button.style('border-radius: 25px 25px 25px 25px');
@@ -189,7 +270,7 @@ function setup() {
   addition_button.id('AddID');
 
   subtraction_button = createButton('Subtraction Only');
-  subtraction_button.position(225, 350);
+  subtraction_button.position(225, 340);
   subtraction_button.style('background-color', '#4CAF65');
   subtraction_button.style('padding: 15px 20px');
   subtraction_button.style('border-radius: 25px 25px 25px 25px');
@@ -200,7 +281,7 @@ function setup() {
   subtraction_button.id("SubID");
 
   division_button = createButton('Division Only');
-  division_button.position(425, 350);
+  division_button.position(425, 340);
   division_button.style('background-color', '#4CAF65');
   division_button.style('padding: 15px 20px');
   division_button.style('border-radius: 25px 25px 25px 25px');
@@ -211,7 +292,7 @@ function setup() {
   division_button.id("DivID");
 
   multiplication_button = createButton('Multiplication Only');
-  multiplication_button.position(600, 350);
+  multiplication_button.position(600, 340);
   multiplication_button.style('background-color', '#4CAF65');
   multiplication_button.style('padding: 15px 20px');
   multiplication_button.style('border-radius: 25px 25px 25px 25px');
@@ -319,6 +400,9 @@ function setup() {
     normalModeButton.show();
     hardModeButton.show();
 
+    hardestModeButton.show();
+    easiestModeButton.show();
+
     star_wars = false;
     moana = false;
     south_park = false;
@@ -366,6 +450,8 @@ function setup() {
     esayModeButton.hide();
     normalModeButton.hide();
     hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
   });
 
   // Math Button Functionality
@@ -393,6 +479,8 @@ function setup() {
     esayModeButton.hide();
     normalModeButton.hide();
     hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
   });
 
   // Subtraction Start the Game
@@ -417,6 +505,8 @@ function setup() {
     esayModeButton.hide();
     normalModeButton.hide();
     hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
   });
   // Division Start the Game
   division_button.mousePressed(() => { // home menu start
@@ -440,6 +530,8 @@ function setup() {
     esayModeButton.hide();
     normalModeButton.hide();
     hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
   });
 
   // Multiplication Start the Game
@@ -464,6 +556,8 @@ function setup() {
     esayModeButton.hide();
     normalModeButton.hide();
     hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
   });
 
   starWars_button.mousePressed(() => { // start game with star wars theme
@@ -472,51 +566,9 @@ function setup() {
     pipePeakSprite = loadImage('graphics/lightsaber.png');
     birdSprite = loadImage('graphics/babyYoda.png');
 
+    starWars_button.style('border-color: yellow');
+    starWars_button.style('border-width: thick');
   });
-
-  // setting slider for speed of game
-  speedSlider = createSlider(1, 10, 5, 1);
-  speedSlider.position((width / 2) / 3, (height / 1.50) + 75);
-  speedSlider.style('width', `${width * (2 / 3)}`);
-  //speedSlider.style('align', 'CENTER')
-  speedSlider.hide();
-
-  esayModeButton = createButton('Easy Mode');
-  esayModeButton.position(((width / 2) / 3) / 3, ((height / 1.50) + 75)) + 25;
-  esayModeButton.style('background-color', '#4CAF65');
-  esayModeButton.style('padding: 15px 20px');
-  esayModeButton.style('border-radius: 25px 25px 25px 25px');
-  esayModeButton.style('cursor: pointer');
-  esayModeButton.style('border: none');
-  esayModeButton.hide();
-
-  esayModeButton.mousePressed(setEasyMode());
-  esayModeButton.id('easyMode');
-
-  normalModeButton = createButton('Normal Mode');
-  normalModeButton.position(((width / 2) / 3) / 2, ((height / 1.50) + 75)) + 25;
-  normalModeButton.style('background-color', '#4CAF65');
-  normalModeButton.style('padding: 15px 20px');
-  normalModeButton.style('border-radius: 25px 25px 25px 25px');
-  normalModeButton.style('cursor: pointer');
-  normalModeButton.style('border: none');
-  normalModeButton.hide();
-
-  normalModeButton.mousePressed(setNormalMode());
-  normalModeButton.id('normalMode');
-
-  hardModeButton = createButton('Hard Mode');
-  hardModeButton.position((((width / 2) / 3) / 3) * 2, ((height / 1.50) + 75)) + 25;
-  hardModeButton.style('background-color', '#4CAF65');
-  hardModeButton.style('padding: 15px 20px');
-  hardModeButton.style('border-radius: 25px 25px 25px 25px');
-  hardModeButton.style('cursor: pointer');
-  hardModeButton.style('border: none');
-  hardModeButton.hide();
-
-  hardModeButton.mousePressed(setHardMode());
-  hardModeButton.id('hardMode');
-
 
 }
 
@@ -550,9 +602,12 @@ function draw() {
     text('Mathy Bird', width / 2, height / 5.5);
   }
   if (!startTheGame && !goToSettings) {
-    textSize(12);
+    textSize(22);
     textAlign(CENTER);
-    text('How to Play: \n Select the correct answer before your time runs out! \n Use your mouse or one of the specified keys: esc, shift, backspace & enter. \n Most importantly, Have Fun!', width / 2, height - 175);
+    text('How to play', width / 2, height - 175);
+    textSize(15);
+    textAlign(CENTER);
+    text('Pick the correct answer before time runs out! \n Select with by clicking with your mouse \n OR \n Select with TAB key & press ENTER', width / 2, height - 150);
   }
 
   if (startTheGame) {
@@ -647,13 +702,18 @@ function draw() {
     text('Choose a Theme', width / 2, height / 3.9);
     textAlign(LEFT, BASELINE);
 
-    textSize(16);
+    textSize(12);
     textAlign(CENTER, CENTER);
     text('(These buttons are not yet functional.)', width / 2, height / 3.3)
 
     textSize(35);
     textAlign(CENTER, CENTER);
-    text('Choose An Operation', width / 2, height / 2);
+    text('Choose An Operation', width / 2, (height / 2) - 20);
+    textAlign(LEFT, BASELINE);
+
+    textSize(12);
+    textAlign(CENTER, CENTER);
+    text('WARNING: Selecting an operation will start a new game', width / 2, (height / 2) + 10);
     textAlign(LEFT, BASELINE);
 
     textSize(35);
@@ -663,7 +723,7 @@ function draw() {
 
     textSize(12);
     textAlign(CENTER, CENTER);
-    text(`Easy = 10 pipes per question  Normal = 5 pipes per question  Hard = 3 pipes per question`, width / 2, (height / 1.50) + 100);
+    text(`(Pipes Per Question)`, width / 2, (height / 1.50) + 50);
     textAlign(LEFT, BASELINE);
   }
 
@@ -902,12 +962,27 @@ function keyPressed() {
       case document.getElementById("hardMode"):
         setHardMode();
         break;
+      case document.getElementById("hardestMode"):
+        setHarderMode();
+        break;
+      case document.getElementById("easiestMode"):
+        setEasierMode();
+        break;
     }
   }
 }
 
-function setEasyMode() {
+function setHarderMode() {
+  speedSlider.value(1);
+}
+
+function setEasierMode() {
   speedSlider.value(10);
+}
+
+function setEasyMode() {
+  speedSlider.value(7);
+  //console.log(speedSlider.value());
 }
 
 function setNormalMode() {
@@ -944,6 +1019,8 @@ function settingsF() {
   esayModeButton.show();
   normalModeButton.show();
   hardModeButton.show();
+  hardestModeButton.show();
+  easiestModeButton.show();
 
   star_wars = false;
   moana = false;
@@ -992,6 +1069,8 @@ function returnMainF() {
   esayModeButton.hide();
   normalModeButton.hide();
   hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
 }
 
 function addF() {
@@ -1015,6 +1094,8 @@ function addF() {
   esayModeButton.hide();
   normalModeButton.hide();
   hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
 }
 
 function subF() {
@@ -1038,6 +1119,8 @@ function subF() {
   esayModeButton.hide();
   normalModeButton.hide();
   hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
 }
 
 function divF() {
@@ -1061,6 +1144,8 @@ function divF() {
   esayModeButton.hide();
   normalModeButton.hide();
   hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
 }
 
 function multF() {
@@ -1084,12 +1169,17 @@ function multF() {
   esayModeButton.hide();
   normalModeButton.hide();
   hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
 }
 
 function swF() {
   pipeBodySprite = loadImage('graphics/lightsaber.png');
   pipePeakSprite = loadImage('graphics/lightsaber.png');
   birdSprite = loadImage('graphics/babyYoda.png');
+
+  starWars_button.style('border-color: yellow');
+  starWars_button.style('border-width: thick');
 }
 // Grave yard
   // if (key === ' ') {
