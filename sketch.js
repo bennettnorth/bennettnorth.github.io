@@ -114,7 +114,7 @@ function setup() {
   return_to_main.id("ReturnID");
 
   easiestModeButton = createButton(`10 pipes`);
-  easiestModeButton.position(((width / 2) / 3) + 475, ((height / 1.50) + 100));
+  easiestModeButton.position(((width / 2) / 3) + 460, ((height / 1.50) + 100));
   easiestModeButton.style('background-color', '#4CAF65');
   easiestModeButton.style('padding: 15px 20px');
   easiestModeButton.style('border-radius: 25px 25px 25px 25px');
