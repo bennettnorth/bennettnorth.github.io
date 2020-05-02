@@ -315,6 +315,9 @@ function setup() {
     fighterJet_button.show();
 
     speedSlider.show();
+    esayModeButton.show();
+    normalModeButton.show();
+    hardModeButton.show();
 
     star_wars = false;
     moana = false;
@@ -360,6 +363,9 @@ function setup() {
     fighterJet_button.hide();
 
     speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
   });
 
   // Math Button Functionality
@@ -384,6 +390,9 @@ function setup() {
     return_to_main.hide();
 
     speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
   });
 
   // Subtraction Start the Game
@@ -405,6 +414,9 @@ function setup() {
     return_to_main.hide();
 
     speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
   });
   // Division Start the Game
   division_button.mousePressed(() => { // home menu start
@@ -425,6 +437,9 @@ function setup() {
     return_to_main.hide();
 
     speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
   });
 
   // Multiplication Start the Game
@@ -446,6 +461,9 @@ function setup() {
     return_to_main.hide();
 
     speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
   });
 
   starWars_button.mousePressed(() => { // start game with star wars theme
@@ -462,6 +480,43 @@ function setup() {
   speedSlider.style('width', `${width * (2 / 3)}`);
   //speedSlider.style('align', 'CENTER')
   speedSlider.hide();
+
+  esayModeButton = createButton('Easy Mode');
+  esayModeButton.position(((width / 2) / 3) / 3, ((height / 1.50) + 75)) + 25;
+  esayModeButton.style('background-color', '#4CAF65');
+  esayModeButton.style('padding: 15px 20px');
+  esayModeButton.style('border-radius: 25px 25px 25px 25px');
+  esayModeButton.style('cursor: pointer');
+  esayModeButton.style('border: none');
+  esayModeButton.hide();
+
+  esayModeButton.mousePressed(setEasyMode());
+  esayModeButton.id('easyMode');
+
+  normalModeButton = createButton('Normal Mode');
+  normalModeButton.position(((width / 2) / 3) / 2, ((height / 1.50) + 75)) + 25;
+  normalModeButton.style('background-color', '#4CAF65');
+  normalModeButton.style('padding: 15px 20px');
+  normalModeButton.style('border-radius: 25px 25px 25px 25px');
+  normalModeButton.style('cursor: pointer');
+  normalModeButton.style('border: none');
+  normalModeButton.hide();
+
+  normalModeButton.mousePressed(setNormalMode());
+  normalModeButton.id('normalMode');
+
+  hardModeButton = createButton('Hard Mode');
+  hardModeButton.position((((width / 2) / 3) / 3) * 2, ((height / 1.50) + 75)) + 25;
+  hardModeButton.style('background-color', '#4CAF65');
+  hardModeButton.style('padding: 15px 20px');
+  hardModeButton.style('border-radius: 25px 25px 25px 25px');
+  hardModeButton.style('cursor: pointer');
+  hardModeButton.style('border: none');
+  hardModeButton.hide();
+
+  hardModeButton.mousePressed(setHardMode());
+  hardModeButton.id('hardMode');
+
 
 }
 
@@ -604,6 +659,11 @@ function draw() {
     textSize(35);
     textAlign(CENTER, CENTER);
     text('Set Game Speed', width / 2, (height / 1.50) + 25);
+    textAlign(LEFT, BASELINE);
+
+    textSize(12);
+    textAlign(CENTER, CENTER);
+    text(`Easy = 10 pipes per question  Normal = 5 pipes per question  Hard = 3 pipes per question`, width / 2, (height / 1.50) + 100);
     textAlign(LEFT, BASELINE);
   }
 
@@ -833,8 +893,29 @@ function keyPressed() {
       case document.getElementById("SWID"):
         swF();
         break;
+      case document.getElementById("easyMode"):
+        setEasyMode();
+        break;
+      case document.getElementById("normalMode"):
+        setNormalMode();
+        break;
+      case document.getElementById("hardMode"):
+        setHardMode();
+        break;
     }
   }
+}
+
+function setEasyMode() {
+  speedSlider.value(10);
+}
+
+function setNormalMode() {
+  speedSlider.value(5);
+}
+
+function setHardMode() {
+  speedSlider.value(3);
 }
 
 function startTheGameF() {
@@ -860,6 +941,9 @@ function settingsF() {
   fighterJet_button.show();
 
   speedSlider.show();
+  esayModeButton.show();
+  normalModeButton.show();
+  hardModeButton.show();
 
   star_wars = false;
   moana = false;
@@ -905,6 +989,9 @@ function returnMainF() {
   fighterJet_button.hide();
 
   speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
 }
 
 function addF() {
@@ -925,6 +1012,9 @@ function addF() {
   return_to_main.hide();
 
   speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
 }
 
 function subF() {
@@ -945,6 +1035,9 @@ function subF() {
   return_to_main.hide();
 
   speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
 }
 
 function divF() {
@@ -965,6 +1058,9 @@ function divF() {
   return_to_main.hide();
 
   speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
 }
 
 function multF() {
@@ -985,6 +1081,9 @@ function multF() {
   return_to_main.hide();
 
   speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
 }
 
 function swF() {
