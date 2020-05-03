@@ -1,3 +1,4 @@
+// The original game, from which our game was adapted, is attributed to:
 // Daniel Shiffman
 // http://codingtra.in
 // http://patreon.com/codingtrain
@@ -108,13 +109,13 @@ function setup() {
   return_to_main.style('background-color', '#4CAF65');
   return_to_main.style('padding: 5px 14px');
   return_to_main.style('border-radius: 25px 25px 25px 25px');
-  return_to_main.style('border-color: white');
+  return_to_main.style('border: none');
   return_to_main.hide();
 
   return_to_main.id("ReturnID");
 
   easiestModeButton = createButton(`10 pipes`);
-  easiestModeButton.position(((width / 2) / 3) + 460, ((height / 1.50) + 100));
+  easiestModeButton.position(((width / 2) / 3) + 485, ((height / 1.6) + 75));
   easiestModeButton.style('background-color', '#4CAF65');
   easiestModeButton.style('padding: 15px 20px');
   easiestModeButton.style('border-radius: 25px 25px 25px 25px');
@@ -123,13 +124,12 @@ function setup() {
   easiestModeButton.hide();
 
   easiestModeButton.mousePressed(() => {
-    speedSlider.value(7);
-    //setEasyMode();
+    speedSlider.value(10);
   });
   easiestModeButton.id('easiestMode');
 
   esayModeButton = createButton(`Easy`);
-  esayModeButton.position(((width / 2) / 3) + 325, ((height / 1.50) + 100));
+  esayModeButton.position(((width / 2) / 3) + 365, ((height / 1.6) + 75));
   esayModeButton.style('background-color', '#4CAF65');
   esayModeButton.style('padding: 15px 20px');
   esayModeButton.style('border-radius: 25px 25px 25px 25px');
@@ -139,12 +139,11 @@ function setup() {
 
   esayModeButton.mousePressed(() => {
     speedSlider.value(7);
-    //setEasyMode();
   });
   esayModeButton.id('easyMode');
 
   normalModeButton = createButton(`Normal`);
-  normalModeButton.position(((width / 2) / 3) + 200, ((height / 1.50) + 100));
+  normalModeButton.position(((width / 2) / 3) + 225, ((height / 1.6) + 75));
   normalModeButton.style('background-color', '#4CAF65');
   normalModeButton.style('padding: 15px 20px');
   normalModeButton.style('border-radius: 25px 25px 25px 25px');
@@ -158,7 +157,7 @@ function setup() {
   normalModeButton.id('normalMode');
 
   hardModeButton = createButton(`Hard`);
-  hardModeButton.position(((width / 2) / 3) + 90, ((height / 1.50) + 100));
+  hardModeButton.position(((width / 2) / 3) + 102, ((height / 1.6) + 75));
   hardModeButton.style('background-color', '#4CAF65');
   hardModeButton.style('padding: 15px 20px');
   hardModeButton.style('border-radius: 25px 25px 25px 25px');
@@ -172,7 +171,7 @@ function setup() {
   hardModeButton.id('hardMode');
 
   hardestModeButton = createButton(`1 pipe`);
-  hardestModeButton.position(((width / 2) / 3) - 30, ((height / 1.50) + 100));
+  hardestModeButton.position(((width / 2) / 3) - 30, ((height / 1.6) + 75));
   hardestModeButton.style('background-color', '#4CAF65');
   hardestModeButton.style('padding: 15px 20px');
   hardestModeButton.style('border-radius: 25px 25px 25px 25px');
@@ -185,15 +184,13 @@ function setup() {
   });
   hardestModeButton.id('hardestMode');
 
-
-  // setting slider for speed of game
-  speedSlider = createSlider(1, 10, 5, 1);
-  speedSlider.position((width / 2) / 3, (height / 1.50) + 75);
+  // Slider
+  speedSlider = createSlider(1, 9, 5, 1);
+  speedSlider.position((width / 2) / 3, (height / 1.6) + 50);
   speedSlider.style('width', `${width * (2 / 3)}`);
-  //speedSlider.style('align', 'CENTER')
   speedSlider.hide();
 
-
+  // Answer Buttons
   answer_A = createButton("A");
   answer_A.position(40, 20);
   answer_A.style('background-color', '#4CAF65');
@@ -206,9 +203,6 @@ function setup() {
 
   answer_A.id("AID");
 
-  // hint_a = createP('[Escape]');
-  // hint_a.position(50, 125);
-  // hint_a.hide();
 
   answer_B = createButton("B");
   answer_B.position(680, 20);
@@ -221,9 +215,7 @@ function setup() {
   answer_B.hide();
 
   answer_B.id("BID");
-  // hint_b = createP('[Backspace]');
-  // hint_b.position(690, 125);
-  // hint_b.hide();
+
 
   answer_C = createButton("C");
   answer_C.style('background-color', '#4CAF65');
@@ -236,9 +228,7 @@ function setup() {
   answer_C.hide();
 
   answer_C.id('CID');
-  // hint_c = createP('[Shift]');
-  // hint_c.position(50, 565);
-  // hint_c.hide();
+
 
   answer_D = createButton("D");
   answer_D.style('background-color', '#4CAF65');
@@ -252,14 +242,21 @@ function setup() {
 
   answer_D.id("DID");
 
-  // hint_d = createP('[Enter]');
-  // hint_d.position(690, 565);
-  // hint_d.hide();
 
+  // Changing Operations Buttons
+  allOps_button = createButton('All Operations');
+  allOps_button.position(334, 220);
+  allOps_button.style('background-color', '#4CAF65');
+  allOps_button.style('padding: 15px 20px');
+  allOps_button.style('border-radius: 25px 25px 25px 25px');
+  allOps_button.style('cursor: pointer');
+  allOps_button.style('border: none');
+  allOps_button.hide();
 
-  // Adding Difficulty Buttons
+  allOps_button.id('AllOpsID');
+
   addition_button = createButton('Addition Only');
-  addition_button.position(50, 340);
+  addition_button.position(50, 270);
   addition_button.style('background-color', '#4CAF65');
   addition_button.style('padding: 15px 20px');
   addition_button.style('border-radius: 25px 25px 25px 25px');
@@ -270,7 +267,7 @@ function setup() {
   addition_button.id('AddID');
 
   subtraction_button = createButton('Subtraction Only');
-  subtraction_button.position(225, 340);
+  subtraction_button.position(225, 270);
   subtraction_button.style('background-color', '#4CAF65');
   subtraction_button.style('padding: 15px 20px');
   subtraction_button.style('border-radius: 25px 25px 25px 25px');
@@ -281,7 +278,7 @@ function setup() {
   subtraction_button.id("SubID");
 
   division_button = createButton('Division Only');
-  division_button.position(425, 340);
+  division_button.position(425, 270);
   division_button.style('background-color', '#4CAF65');
   division_button.style('padding: 15px 20px');
   division_button.style('border-radius: 25px 25px 25px 25px');
@@ -292,7 +289,7 @@ function setup() {
   division_button.id("DivID");
 
   multiplication_button = createButton('Multiplication Only');
-  multiplication_button.position(600, 340);
+  multiplication_button.position(600, 270);
   multiplication_button.style('background-color', '#4CAF65');
   multiplication_button.style('padding: 15px 20px');
   multiplication_button.style('border-radius: 25px 25px 25px 25px');
@@ -302,45 +299,7 @@ function setup() {
 
   multiplication_button.id("MultID");
 
-  // customization buttons
-  starWars_button = createButton("Star Wars");
-  starWars_button.position(75, 200);
-  starWars_button.style('color: white')
-  starWars_button.style('background-color', '#000000');
-  starWars_button.style('padding: 15px 20px');
-  starWars_button.style('border-radius: 25px 25px 25px 25px');
-  starWars_button.style('cursor: pointer');
-  starWars_button.hide();
-
-  starWars_button.id('SWID');
-
-  moana_button = createButton("Moana");
-  moana_button.position(250, 200);
-  moana_button.style('color: white')
-  moana_button.style('background-color', '#1BAAD8');
-  moana_button.style('padding: 15px 20px');
-  moana_button.style('border-radius: 25px 25px 25px 25px');
-  moana_button.style('cursor: pointer');
-  moana_button.hide();
-
-  southPark_button = createButton("South Park");
-  southPark_button.position(450, 200);
-  southPark_button.style('color: white')
-  southPark_button.style('background-color', '#D8241B');
-  southPark_button.style('padding: 15px 20px');
-  southPark_button.style('border-radius: 25px 25px 25px 25px');
-  southPark_button.style('cursor: pointer');
-  southPark_button.hide();
-
-  fighterJet_button = createButton("Fighter Jet");
-  fighterJet_button.position(625, 200);
-  fighterJet_button.style('color: white')
-  fighterJet_button.style('background-color', '#C2C2BD');
-  fighterJet_button.style('padding: 15px 20px');
-  fighterJet_button.style('border-radius: 25px 25px 25px 25px');
-  fighterJet_button.style('cursor: pointer');
-  fighterJet_button.hide();
-
+  // Mouse Press Functionality
   answer_A.mousePressed(() => {
     if (correctAnswerChoice == 0) {
       userAnswer = true;
@@ -385,15 +344,11 @@ function setup() {
     start_game_button.hide();
     settings_button.hide();
 
+    allOps_button.show();
     addition_button.show();
     subtraction_button.show();
     division_button.show();
     multiplication_button.show();
-
-    starWars_button.show();
-    moana_button.show();
-    southPark_button.show();
-    fighterJet_button.show();
 
     speedSlider.show();
     esayModeButton.show();
@@ -435,16 +390,12 @@ function setup() {
     settings_button.show();
     return_to_main.hide();
 
+    allOps_button.hide();
     addition_button.hide();
     subtraction_button.hide();
     division_button.hide();
     multiplication_button.hide();
     return_to_main.hide();
-
-    starWars_button.hide();
-    moana_button.hide();
-    southPark_button.hide();
-    fighterJet_button.hide();
 
     speedSlider.hide();
     esayModeButton.hide();
@@ -455,20 +406,45 @@ function setup() {
   });
 
   // Math Button Functionality
-  //Addition 
+  allOps_button.mousePressed(() => { // home menu start
+    subtraction_only = false;
+    division_only = false;
+    multiplication_only = false;
+    addition_only = false;
+
+    goToSettings = false;
+
+    start_game_button.show();
+    settings_button.show();
+
+    allOps_button.hide();
+    addition_button.hide();
+    subtraction_button.hide();
+    division_button.hide();
+    multiplication_button.hide();
+    return_to_main.hide();
+
+    speedSlider.hide();
+    esayModeButton.hide();
+    normalModeButton.hide();
+    hardModeButton.hide();
+    hardestModeButton.hide();
+    easiestModeButton.hide();
+  });
 
   // Addition Start the Game
   addition_button.mousePressed(() => { // home menu start
     subtraction_only = false;
     division_only = false;
     multiplication_only = false;
-
     addition_only = true;
-    startTheGame = true;
+
     goToSettings = false;
 
-    start_game_button.hide();
-    settings_button.hide();
+    start_game_button.show();
+    settings_button.show();
+
+    allOps_button.hide();
     addition_button.hide();
     subtraction_button.hide();
     division_button.hide();
@@ -488,13 +464,14 @@ function setup() {
     addition_only = false;
     division_only = false;
     multiplication_only = false;
-
     subtraction_only = true;
-    startTheGame = true;
+    
     goToSettings = false;
 
-    start_game_button.hide();
-    settings_button.hide();
+    start_game_button.show();
+    settings_button.show();
+
+    allOps_button.hide();
     addition_button.hide();
     subtraction_button.hide();
     division_button.hide();
@@ -513,13 +490,14 @@ function setup() {
     addition_only = false;
     subtraction_only = false;
     multiplication_only = false;
-
     division_only = true;
-    startTheGame = true;
+
     goToSettings = false;
 
-    start_game_button.hide();
-    settings_button.hide();
+    start_game_button.show();
+    settings_button.show();
+
+    allOps_button.hide();
     addition_button.hide();
     subtraction_button.hide();
     division_button.hide();
@@ -539,13 +517,14 @@ function setup() {
     addition_only = false;
     subtraction_only = false;
     division_only = false;
-
     multiplication_only = true;
-    startTheGame = true;
+
     goToSettings = false;
 
-    start_game_button.hide();
-    settings_button.hide();
+    start_game_button.show();
+    settings_button.show();
+
+    allOps_button.hide();
     addition_button.hide();
     subtraction_button.hide();
     division_button.hide();
@@ -558,16 +537,6 @@ function setup() {
     hardModeButton.hide();
     hardestModeButton.hide();
     easiestModeButton.hide();
-  });
-
-  starWars_button.mousePressed(() => { // start game with star wars theme
-
-    pipeBodySprite = loadImage('graphics/lightsaber.png');
-    pipePeakSprite = loadImage('graphics/lightsaber.png');
-    birdSprite = loadImage('graphics/babyYoda.png');
-
-    starWars_button.style('border-color: yellow');
-    starWars_button.style('border-width: thick');
   });
 
 }
@@ -591,11 +560,6 @@ function draw() {
   }
 
 
-  // if (document.activeElement === document.getElementById("StartGameID")) {
-  //   console.log('works again');
-  // }
-
-
   if (!startTheGame) {
     textSize(64);
     textAlign(CENTER);
@@ -604,10 +568,16 @@ function draw() {
   if (!startTheGame && !goToSettings) {
     textSize(22);
     textAlign(CENTER);
-    text('How to play', width / 2, height - 175);
+    text('HOW TO PLAY:', width / 2, height/1.45);
     textSize(15);
     textAlign(CENTER);
-    text('Pick the correct answer before time runs out! \n Select with by clicking with your mouse \n OR \n Select with TAB key & press ENTER', width / 2, height - 150);
+    text('Pick the correct answer before time runs out!', width / 2, height/1.4);
+    textAlign(CENTER);
+    text('Select your answer by clicking with your mouse', width/2, height/1.35);
+    textAlign(CENTER);
+    text('OR', width/2, height/1.3);
+    textAlign(CENTER);
+    text('Select your answer with the TAB key & press ENTER', width/2, height/1.25);
   }
 
   if (startTheGame) {
@@ -618,11 +588,6 @@ function draw() {
     answer_B.show();
     answer_C.show();
     answer_D.show();
-
-    starWars_button.hide();
-    moana_button.hide();
-    southPark_button.hide();
-    fighterJet_button.hide();
 
     gameFrameCount++;
     for (var i = pipes.length - 1; i >= 0; i--) {
@@ -650,11 +615,6 @@ function draw() {
       pipes.push(new Pipe());
     }
 
-    // if ((frameCount - gameoverFrame) % 150 == 0) {
-    //   pipes.push(new Pipe());
-    // }
-
-
     // after every 3 pipes, check if the user's answer was correct
     if (count == speedSlider.value()) { // change to timelimit var
       if (userAnswer) {
@@ -681,49 +641,20 @@ function draw() {
 
     showScores();
 
-    // touches is an list that contains the positions of all
-    // current touch points positions and IDs
-    // here we check if touches' length is bigger than one
-    // and set it to the touched var
-    // touched = (touches.length > 0);
-    //
-    // // if user has touched then make bird jump
-    // // also checks if not touched before
-    // if (touched && !prevTouched) {
-    //   bird.up();
-    // }
-    //
-    // // updates prevTouched
-    // prevTouched = touched;
   } else if (goToSettings) {
-    // this is where we can add costomization
     textSize(35);
     textAlign(CENTER, CENTER);
-    text('Choose a Theme', width / 2, height / 3.9);
-    textAlign(LEFT, BASELINE);
-
-    textSize(12);
-    textAlign(CENTER, CENTER);
-    text('(These buttons are not yet functional.)', width / 2, height / 3.3)
-
-    textSize(35);
-    textAlign(CENTER, CENTER);
-    text('Choose An Operation', width / 2, (height / 2) - 20);
-    textAlign(LEFT, BASELINE);
-
-    textSize(12);
-    textAlign(CENTER, CENTER);
-    text('WARNING: Selecting an operation will start a new game', width / 2, (height / 2) + 10);
+    text('Choose An Operation', width / 2, (height / 2)-110);
     textAlign(LEFT, BASELINE);
 
     textSize(35);
     textAlign(CENTER, CENTER);
-    text('Set Game Speed', width / 2, (height / 1.50) + 25);
+    text('Set Game Speed', width / 2, (height / 1.6));
     textAlign(LEFT, BASELINE);
 
     textSize(12);
     textAlign(CENTER, CENTER);
-    text(`(Pipes Per Question)`, width / 2, (height / 1.50) + 50);
+    text(`(Pipes Per Question)`, width / 2, (height / 1.6)+25);
     textAlign(LEFT, BASELINE);
   }
 
@@ -767,7 +698,6 @@ function reset() {
   pipes = [];
   bird = new Bird();
   pipes.push(new Pipe());
-  //gameoverFrame = frameCount - 1;
   gameoverFrame = gameFrameCount - 1;
   count = 0;
   gameFrameCount = 0;
@@ -794,8 +724,7 @@ function createQuestion() {
   //generate random range_of_numbers
   let x = Math.floor(Math.random() * Math.floor(10)) // change 10 to a factor variable
   let y = Math.floor(Math.random() * Math.floor(10))
-  //let z = Math.floor(Math.random() * Math.floor(strings_of_equations.length)) // the operation
-
+  
   while (x == 0 && y == 0) {
     x = Math.floor(Math.random() * Math.floor(10))
     y = Math.floor(Math.random() * Math.floor(10))
@@ -871,7 +800,7 @@ function createQuestion() {
   return return_string.concat(' =  ?');
 }
 
-// stolen from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+// taken from stack overflow: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffleThis(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -950,8 +879,8 @@ function keyPressed() {
       case document.getElementById("MultID"):
         multF();
         break;
-      case document.getElementById("SWID"):
-        swF();
+      case document.getElementById("AllOpsID"):
+        allOpsF();
         break;
       case document.getElementById("easyMode"):
         setEasyMode();
@@ -967,7 +896,7 @@ function keyPressed() {
         break;
       case document.getElementById("easiestMode"):
         setEasierMode();
-        break;
+        break;  
     }
   }
 }
@@ -982,7 +911,6 @@ function setEasierMode() {
 
 function setEasyMode() {
   speedSlider.value(7);
-  //console.log(speedSlider.value());
 }
 
 function setNormalMode() {
@@ -1005,15 +933,11 @@ function settingsF() {
   start_game_button.hide();
   settings_button.hide();
 
+  allOps_button.show();
   addition_button.show();
   subtraction_button.show();
   division_button.show();
   multiplication_button.show();
-
-  starWars_button.show();
-  moana_button.show();
-  southPark_button.show();
-  fighterJet_button.show();
 
   speedSlider.show();
   esayModeButton.show();
@@ -1054,16 +978,38 @@ function returnMainF() {
   settings_button.show();
   return_to_main.hide();
 
+  allOps_button.hide();
   addition_button.hide();
   subtraction_button.hide();
   division_button.hide();
   multiplication_button.hide();
   return_to_main.hide();
 
-  starWars_button.hide();
-  moana_button.hide();
-  southPark_button.hide();
-  fighterJet_button.hide();
+  speedSlider.hide();
+  esayModeButton.hide();
+  normalModeButton.hide();
+  hardModeButton.hide();
+  hardestModeButton.hide();
+  easiestModeButton.hide();
+}
+
+function allOpsF() {
+  subtraction_only = false;
+  division_only = false;
+  multiplication_only = false;
+  addition_only = false;
+
+  goToSettings = false;
+
+  start_game_button.show();
+  settings_button.show();
+
+  allOps_button.hide();
+  addition_button.hide();
+  subtraction_button.hide();
+  division_button.hide();
+  multiplication_button.hide();
+  return_to_main.hide();
 
   speedSlider.hide();
   esayModeButton.hide();
@@ -1077,13 +1023,14 @@ function addF() {
   subtraction_only = false;
   division_only = false;
   multiplication_only = false;
-
   addition_only = true;
-  startTheGame = true;
+
   goToSettings = false;
 
-  start_game_button.hide();
-  settings_button.hide();
+  start_game_button.show();
+  settings_button.show();
+
+  allOps_button.hide();
   addition_button.hide();
   subtraction_button.hide();
   division_button.hide();
@@ -1102,13 +1049,14 @@ function subF() {
   addition_only = false;
   division_only = false;
   multiplication_only = false;
-
   subtraction_only = true;
-  startTheGame = true;
+
   goToSettings = false;
 
-  start_game_button.hide();
-  settings_button.hide();
+  start_game_button.show();
+  settings_button.show();
+
+  allOps_button.hide();
   addition_button.hide();
   subtraction_button.hide();
   division_button.hide();
@@ -1127,13 +1075,14 @@ function divF() {
   addition_only = false;
   subtraction_only = false;
   multiplication_only = false;
-
   division_only = true;
-  startTheGame = true;
+  
   goToSettings = false;
 
-  start_game_button.hide();
-  settings_button.hide();
+  start_game_button.show();
+  settings_button.show();
+
+  allOps_button.hide();
   addition_button.hide();
   subtraction_button.hide();
   division_button.hide();
@@ -1152,13 +1101,14 @@ function multF() {
   addition_only = false;
   subtraction_only = false;
   division_only = false;
-
   multiplication_only = true;
-  startTheGame = true;
+
   goToSettings = false;
 
-  start_game_button.hide();
-  settings_button.hide();
+  start_game_button.show();
+  settings_button.show();
+
+  allOps_button.hide();
   addition_button.hide();
   subtraction_button.hide();
   division_button.hide();
@@ -1172,70 +1122,3 @@ function multF() {
   hardestModeButton.hide();
   easiestModeButton.hide();
 }
-
-function swF() {
-  pipeBodySprite = loadImage('graphics/lightsaber.png');
-  pipePeakSprite = loadImage('graphics/lightsaber.png');
-  birdSprite = loadImage('graphics/babyYoda.png');
-
-  starWars_button.style('border-color: yellow');
-  starWars_button.style('border-width: thick');
-}
-// Grave yard
-  // if (key === ' ') {
-  //   //bird.up();
-  //   gameover()
-  //   if (isOver) reset(); //you can just call reset() in Machinelearning if you die, because you cant simulate keyPress with code.
-  // }
-
-
-//
-// function touchStarted() {
-//   if (isOver) reset();
-// }
-
-
-// southPark_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/scottTenorman.png');
-  //   pipePeakSprite = loadImage('graphics/scottTenorman.png');
-  //   birdSprite = loadImage('graphics/cartman.png');
-
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
-
-  // fighterJet_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/skyscraper.png');
-  //   pipePeakSprite = loadImage('graphics/skyscraper.png');
-  //   birdSprite = loadImage('graphics/fighterJet.png');
-
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
-
-  // moana_button.mousePressed(() => { // start game with star wars theme 
-  //   pipeBodySprite = loadImage('graphics/waterSpout.jpg');
-  //   pipePeakSprite = loadImage('graphics/waterSpout.jpg');
-  //   birdSprite = loadImage('graphics/moana.jpg');
-
-  //   addition_button.hide();
-  //   subtraction_button.hide();
-  //   division_button.hide();
-  //   multiplication_button.hide();
-
-  //   return_to_main.hide();
-  //   startTheGame=true;
-  //   goToSettings = false;
-  // });
